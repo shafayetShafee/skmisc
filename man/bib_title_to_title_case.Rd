@@ -4,14 +4,23 @@
 \alias{bib_title_to_title_case}
 \title{Convert the title of each bibentry of a bib file to title case.}
 \usage{
-bib_title_to_title_case(bib_file_path)
+bib_title_to_title_case(bib_file_path, output_bib_file)
 }
 \arguments{
 \item{bib_file_path}{character, path to a \code{.bib} file.}
+
+\item{output_bib_file}{character, path to a \code{.bib} file that will contain
+the transformed bibentries with title-cased title.}
 }
 \value{
 \code{bib_file_path} as a character string, invisibly.
 }
 \description{
 Convert the title of each bibentry of a bib file to title case.
+}
+\examples{
+bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
+tmp_output_file <- tempfile()
+bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
+
 }

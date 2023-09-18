@@ -8,20 +8,23 @@
 #' @return `bib_file_path` as a character string, invisibly.
 #'
 #' @examples
+#' bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
+#' tmp_output_file <- tempfile()
+#' bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
 #'
 #' @export
 bib_title_to_title_case <- function(bib_file_path, output_bib_file) {
 
   if (!is.character(bib_file_path)) {
-    stop("Invalid file path: Non-character supplied.", call. = FALSE)
+    stop("Invalid `bib_file_path` path: Non-character supplied.", call. = FALSE)
   }
 
   if (as.numeric(file.access(bib_file_path, mode = 4)) != 0) {
-    stop("Invalid file path: File is not readable.", call. = FALSE)
+    stop("Invalid `bib_file_path` path: File is not readable.", call. = FALSE)
   }
 
-  if (as.numeric(file.access(output_bib_file, mode = 2)) != 0) {
-    stop("Invalid file path: File is not writable", call. = FALSE)
+  if (!is.character(output_bib_file)) {
+    stop("Invalid `output_bib_file` path: Non-character supplied.", call. = FALSE)
   }
 
   bib_df <-  RefManageR::ReadBib(bib_file_path) |> as.data.frame()
@@ -29,7 +32,7 @@ bib_title_to_title_case <- function(bib_file_path, output_bib_file) {
   bib_df$booktitle <- tools::toTitleCase(bib_df$booktitle)
   RefManageR::WriteBib(
     RefManageR::as.BibEntry(bib_df),
-    file = bib_file_path
+    file = output_bib_file
   )
   invisible(bib_file_path)
 }
