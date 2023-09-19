@@ -2,8 +2,6 @@ title: skmisc
 url: https://shafayetshafee.github.io/skmisc/
 template:
   bootstrap: 5
-  template:
-  bootstrap: 5
   bootswatch: lumen
   theme: kate
   bslib:
