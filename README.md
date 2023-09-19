@@ -9,6 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org/package=skmisc)
+[![Codecov test
+coverage](https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main)
+[![R-CMD-check](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `{skmisc}` is to provide some function that makes certain
@@ -59,7 +62,7 @@ cat(readLines(bib_file), sep = "\n")
 tmp_output_file <- tempfile(fileext = ".bib")
 bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
 #> Writing 2 Bibtex entries ... OK
-#> Results written to file '/var/folders/bt/zy40546n0xdbzb8m95yscnh00000gn/T//Rtmpb8fwWd/file786795c799f.bib'
+#> Results written to file '/var/folders/bt/zy40546n0xdbzb8m95yscnh00000gn/T//RtmpaVn4Wy/filea893f9e5f94.bib'
 
 cat(readLines(tmp_output_file), sep = "\n")
 #> @Article{merlo2005brief,
