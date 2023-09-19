@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# skmisc (Shafayet Khan Miscellaneous)
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org/package=skmisc)
+<!-- badges: end -->
+
+The goal of `{skmisc}` is to provide some function that makes certain workflows easier.
+
+## Installation
+
+`{skmisc}` is not on CRAN yet. You can install the development version of `{skmisc}` from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("shafayetShafee/skmisc")
+```
+
+## Example
+
+### Converting the title of bib entries in a bib file to title case
+
+```{r}
+library(skmisc)
+
+bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
+
+# The title of each bib entry is in sentence case.
+cat(readLines(bib_file), sep = "\n")
+
+# converting the titles to title case.
+tmp_output_file <- tempfile(fileext = ".bib")
+bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
+
+cat(readLines(tmp_output_file), sep = "\n")
+```
+
+
+## Code of Conduct
+
+Please note that the skmisc project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
