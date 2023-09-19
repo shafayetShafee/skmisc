@@ -20,7 +20,8 @@ Convert the title of each bibentry of a bib file to title case.
 }
 \examples{
 bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
-tmp_output_file <- tempfile()
+tmp_output_file <- tempfile(fileext = ".bib")
 bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
+cat(readLines(tmp_output_file), sep = "\n")
 
 }
