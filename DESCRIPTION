@@ -1,6 +1,6 @@
 Package: skmisc
 Title: Shafayet Khan Miscellaneous
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Shafayet Khan", "Shafee", , "sshafee@isrt.ac.bd", role = c("aut", "cre"))
 Description: Contains some function that makes certain workflows easier.
