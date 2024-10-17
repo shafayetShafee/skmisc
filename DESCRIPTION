@@ -1,5 +1,5 @@
 Package: skmisc
-Title: Shafayet Khan Miscellaneous
+Title: Miscellaneous Functions by Shafayet Khan
 Version: 0.1.1
 Authors@R: 
     person("Shafayet Khan", "Shafee", , "sshafee@isrt.ac.bd", role = c("aut", "cre"))
@@ -11,7 +11,11 @@ RoxygenNote: 7.2.3
 URL: https://github.com/shafayetShafee/skmisc, https://shafayetshafee.github.io/skmisc/
 BugReports: https://github.com/shafayetShafee/skmisc/issues
 Imports: 
-    RefManageR
+    fs,
+    RefManageR,
+    rmarkdown,
+    rticles,
+    yaml
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
