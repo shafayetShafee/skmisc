@@ -1,30 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/404.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/index.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/reference/bib_title_to_title_case.html</loc>
-  </url>
-  <url>
-    <loc>https://shafayetshafee.github.io/skmisc/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://shafayetshafee.github.io/skmisc/404.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/LICENSE-text.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/LICENSE.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/authors.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/index.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/news/index.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/reference/bib_title_to_title_case.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/reference/create_article_template.html</loc></url>
+<url><loc>https://shafayetshafee.github.io/skmisc/reference/index.html</loc></url>
 </urlset>
+
