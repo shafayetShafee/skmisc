@@ -62,11 +62,11 @@ cat(readLines(bib_file), sep = "\n")
 tmp_output_file <- tempfile(fileext = ".bib")
 bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
 #> Writing 2 Bibtex entries ... OK
-#> Results written to file '/var/folders/bt/zy40546n0xdbzb8m95yscnh00000gn/T//RtmpaVn4Wy/filea893f9e5f94.bib'
+#> Results written to file '/var/folders/1b/g5rkw6nx0k96cs7rlxcrz63h0000gn/T//Rtmpp6f4OF/file94391bf2f1cc.bib'
 
 cat(readLines(tmp_output_file), sep = "\n")
 #> @Article{merlo2005brief,
-#>   title = {A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon},
+#>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
 #>   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},
 #>   journal = {Journal of Epidemiology \& Community Health},
 #>   volume = {59},
@@ -74,17 +74,22 @@ cat(readLines(tmp_output_file), sep = "\n")
 #>   pages = {443--449},
 #>   year = {2005},
 #>   publisher = {BMJ Publishing Group Ltd},
+#>   booktitle = {{NA}},
 #> }
 #> 
 #> @InProceedings{hox1998multilevel,
-#>   title = {Multilevel Modeling: When and Why},
+#>   title = {{Multilevel Modeling: When and Why}},
 #>   author = {Joop Hox},
 #>   pages = {147--154},
 #>   year = {1998},
-#>   booktitle = {Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"U}r Klassifikation eV, University of Potsdam, March 12--14, 1997},
+#>   booktitle = {{Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"U}r Klassifikation eV, University of Potsdam, March 12--14, 1997}},
 #>   organization = {Springer},
 #> }
 ```
+
+### Create a Structured Article Template for a Specified Journal Supported by `{rticles}`
+
+    create_article_template("arxiv")
 
 ## Code of Conduct
 

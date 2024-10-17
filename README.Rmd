@@ -53,6 +53,13 @@ cat(readLines(tmp_output_file), sep = "\n")
 ```
 
 
+### Create a Structured Article Template for a Specified Journal Supported by `{rticles}`
+
+```
+create_article_template("arxiv")
+```
+
+
 ## Code of Conduct
 
 Please note that the skmisc project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

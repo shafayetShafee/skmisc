@@ -3,7 +3,7 @@
 #' This function generates an article template for the specified journal using the
 #' \code{rmarkdown::draft} function from the \code{rticles} package. It checks whether
 #' the journal is supported, creates the necessary directories and files, and formats
-#' the \code{Article.Rmd} file by adding section chunks and an abstract.
+#' the \code{<journal_name>_article.Rmd} file by adding section chunks and an abstract.
 #'
 #' @param journal_name A character string specifying the journal for which the article
 #' template will be created. It must be one of the supported journals listed by
