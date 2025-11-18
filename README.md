@@ -1,21 +1,19 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# skmisc (Shafayet Khan Miscellaneous)
-
-<!-- badges: start -->
+# skmisc (Shafayet Khan Miscellaneous) <a href="https://shafayetshafee.github.io/skmisc/"><img src="man/figures/logo.svg" align="right" height="139" alt="skmisc website" /></a>
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://choosealicense.com/licenses/mit/)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org/package=skmisc)
 [![Codecov test
 coverage](https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main)
 [![R-CMD-check](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
 
 The goal of `{skmisc}` is to provide some function that makes certain
-workflows easier.
+workflows easier. Currently, the only function that might be useful to
+anyone (who use Rmarkdown + LaTex) is `skmisc::create_article_template`.
 
 ## Installation
 
@@ -23,11 +21,118 @@ workflows easier.
 of `{skmisc}` from [GitHub](https://github.com/) with:
 
 ``` r
+# install.packages("pak")
+pak::pak("shafayetShafee/skmisc")
+```
+
+or,
+
+``` r
 # install.packages("remotes")
 remotes::install_github("shafayetShafee/skmisc")
 ```
 
 ## Example
+
+### Create a Structured Article Template for a Journal Supported by `{rticles}`
+
+Suppose you want to format your manuscript following the *Statistics in
+Medicine (SIM)* style using the R package
+[`rticles`](https://pkgs.rstudio.com/rticles/reference/article.html#sim-article).
+The standard approach is:
+
+``` r
+rmarkdown::draft(
+    "sim_article", 
+    template = "sim", 
+    package = "rticles",
+    create_dir = TRUE,
+    edit = FALSE
+)
+```
+
+This creates a directory named `sim_article` in your working directory,
+containing all the files required for the *SIM* format. The structure
+looks like this:
+
+``` bash
+sim_article
+├── bibfile.bib
+├── Fonts
+│   └── Stix
+├── LETTERSP.STY
+├── skeleton.log
+├── sim_article.Rmd
+├── WileyNJD-AMA.bst
+└── WileyNJD-v5.cls
+```
+
+This works well, but the structure has one limitation: you must write
+your entire manuscript in a single Rmd file. However, I personally
+prefer keeping different major sections in separate Rmd files for better
+organization and modular editing.
+
+That motivated the creation of the following function:
+
+``` r
+skmisc::create_article_template("sim")
+```
+
+Running this will create the directory `sim_article` with a more modular
+structure:
+
+``` bash
+sim_article
+├── abstract.Rmd
+├── bibfile.bib
+├── Example.Rmd
+├── Fonts
+│   └── Stix
+├── LETTERSP.STY
+├── sections
+│   ├── section01.Rmd
+│   ├── section02.Rmd
+│   ├── section03.Rmd
+│   ├── section04.Rmd
+│   └── section05.Rmd
+├── sim_article.Rmd
+├── skeleton.log
+├── WileyNJD-AMA.bst
+└── WileyNJD-v5.cls
+```
+
+In this layout, each major section lives in its own Rmd file, which the
+main file (`sim_article.Rmd`) includes as child documents. For example
+(non-essential YAML omitted):
+
+<pre>
+---
+<..TRUNCATED..>
+abstract: |
+    &#96;r paste(readLines("abstract.Rmd"), collapse = "\n  ")&#96;
+<..TRUNCATED..>
+---
+&#10;&#96;&#96;&#96;{r section01, child="sections/section01.Rmd"}
+&#96;&#96;&#96;
+&#10;&#96;&#96;&#96;{r section02, child="sections/section02.Rmd"}
+&#96;&#96;&#96;
+&#10;&#96;&#96;&#96;{r section03, child="sections/section03.Rmd"}
+&#96;&#96;&#96;
+&#10;&#96;&#96;&#96;{r section04, child="sections/section04.Rmd"}
+&#96;&#96;&#96;
+&#10;&#96;&#96;&#96;{r section05, child="sections/section05.Rmd"}
+&#96;&#96;&#96;
+</pre>
+
+To check the formatted pdf out, you just knit this main
+`sim_article.Rmd` file. This structure allows you to keep your
+manuscript clean, organized, and modular. Useful, innit? 🙂
+
+> \[!NOTE\] `skmisc::create_article_template()` is a convenient wrapper
+> around `rmarkdown::draft()` that lets you use any `{rticles}` journal
+> format while working with multiple Rmd files. If you prefer the
+> traditional single-file workflow, you should simply use
+> `rmarkdown::draft()` with `{rticles}` directly.
 
 ### Converting the title of bib entries in a bib file to title case
 
@@ -62,7 +167,7 @@ cat(readLines(bib_file), sep = "\n")
 tmp_output_file <- tempfile(fileext = ".bib")
 bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
 #> Writing 2 Bibtex entries ... OK
-#> Results written to file '/var/folders/1b/g5rkw6nx0k96cs7rlxcrz63h0000gn/T//Rtmpp6f4OF/file94391bf2f1cc.bib'
+#> Results written to file '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpSZK8up/file15e335fb42776.bib'
 
 cat(readLines(tmp_output_file), sep = "\n")
 #> @Article{merlo2005brief,
@@ -86,10 +191,6 @@ cat(readLines(tmp_output_file), sep = "\n")
 #>   organization = {Springer},
 #> }
 ```
-
-### Create a Structured Article Template for a Specified Journal Supported by `{rticles}`
-
-    create_article_template("arxiv")
 
 ## Code of Conduct
 
