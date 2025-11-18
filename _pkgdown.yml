@@ -2,16 +2,26 @@ title: skmisc
 url: https://shafayetshafee.github.io/skmisc/
 template:
   bootstrap: 5
-  bootswatch: lumen
   theme: kate
+  theme-dark: breeze-dark
   bslib:
     pkgdown-nav-height: 100px
-    base_font: {google: "Roboto"}
-    heading_font: {google: "Roboto Slab"}
+    base_font: {google: "Source Sans Pro"}
+    heading_font: {google: "Fira Sans"}
     code_font: {google: "JetBrains Mono"}
 
 development:
   mode: auto
+
+authors:
+  Shafayet Khan Shafee:
+    href: https://shafayetshafee.github.io/
+
+home:
+  title: An R package providing miscellaneous functions by Shafayet Khan
+  description: "Contains some function that makes certain workflows easier"
+  sidebar:
+    structure: [links, license, community, citation, authors, dev, toc]
 
 navbar:
   structure:
@@ -26,6 +36,15 @@ navbar:
       icon: fas fa-clipboard-list
       text: News
       href: news/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/shafayetShafee/skmisc/
+      aria-label: GitHub
     twitter:
-      icon: "fab fa-twitter"
-      href: https://twitter.com/shafayet_shafee
+      icon: fab fa-twitter fa-lg
+      href: https://x.com/shafayet_shafee
+      aria-label: X (formerly, Twitter)
+
+
+deploy:
+  install_metadata: true
