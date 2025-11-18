@@ -23,11 +23,21 @@ create_article_template <- function(journal_name) {
   supported_journals <- rticles::journals()
 
   if (!journal_name %in% supported_journals) {
-    stop(paste(
-      "The journal name '", journal_name,
-      "' is not supported.\nPlease use one of the following journal names:\n",
-      paste(supported_journals, collapse = ", ")
-    ), call. = FALSE)
+    supported_journals_formatted <- cli::cli_vec(
+      x = supported_journals,
+      style = list(
+        "vec-sep" = ", ",
+        "vec-last" = " and ",
+        "vec-trunc" = length(supported_journals)
+      )
+    )
+    cli::cli_abort(c(
+        "x" = "The jounal name '{.strong {journal_name}}' is not supported. ",
+        "i" = "Please use one of the following journal names: {.val {supported_journals_formatted}}",
+        "i" = "For details, see {.url https://pkgs.rstudio.com/rticles/reference/journals.html}"
+      ),
+      wrap = TRUE
+    )
   }
 
   draft_dir <- fs::path(paste0(journal_name, "_article"))
