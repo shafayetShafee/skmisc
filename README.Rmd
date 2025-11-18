@@ -17,16 +17,25 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://choosealicense.com/licenses/mit/) 
 [![CRAN status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org/package=skmisc)
 [![Codecov test coverage](https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main)
 [![R-CMD-check](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `{skmisc}` is to provide some function that makes certain workflows easier.
+The goal of `{skmisc}` is to provide some function that makes certain workflows easier. So far, the
+only function that might be useful to anyone (who use Rmarkdown + LaTex) is `skmisc::create_article_template`.
 
 ## Installation
 
 `{skmisc}` is not on CRAN yet. You can install the development version of `{skmisc}` from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("shafayetShafee/skmisc")
+```
+
+or, 
 
 ``` r
 # install.packages("remotes")
@@ -34,6 +43,13 @@ remotes::install_github("shafayetShafee/skmisc")
 ```
 
 ## Example
+
+### Create a Structured Article Template for a Specified Journal Supported by `{rticles}`
+
+``` r
+create_article_template("arxiv")
+```
+
 
 ### Converting the title of bib entries in a bib file to title case
 
@@ -50,13 +66,6 @@ tmp_output_file <- tempfile(fileext = ".bib")
 bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
 
 cat(readLines(tmp_output_file), sep = "\n")
-```
-
-
-### Create a Structured Article Template for a Specified Journal Supported by `{rticles}`
-
-```
-create_article_template("arxiv")
 ```
 
 
