@@ -5,18 +5,24 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Miscellaneous Functions by Shafayet Khan • skmisc</title>
+<title>An R package providing miscellaneous functions by Shafayet Khan • skmisc</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Fira_Sans-0.4.10/font.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="Miscellaneous Functions by Shafayet Khan">
-<meta name="description" content="Contains some function that makes certain workflows easier.">
-<meta property="og:description" content="Contains some function that makes certain workflows easier.">
+<meta property="og:title" content="An R package providing miscellaneous functions by Shafayet Khan">
+<meta name="description" content="Contains some function that makes certain workflows easier">
+<meta property="og:description" content="Contains some function that makes certain workflows easier">
+<meta property="og:image" content="https://shafayetshafee.github.io/skmisc/logo.svg">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -43,7 +49,7 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/shafayetShafee/skmisc/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://twitter.com/shafayet_shafee"><span class="fa fab fa-twitter"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://x.com/shafayet_shafee" aria-label="X (formerly, Twitter)"><span class="fa fab fa-twitter fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -52,16 +58,22 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="skmisc-shafayet-khan-miscellaneous">skmisc (Shafayet Khan Miscellaneous)<a class="anchor" aria-label="anchor" href="#skmisc-shafayet-khan-miscellaneous"></a>
-</h1></div>
-<!-- badges: start -->
-
-<p>The goal of <a href="https://github.com/shafayetShafee/skmisc" class="external-link">skmisc</a> is to provide some function that makes certain workflows easier.</p>
+<div class="page-header">
+<img src="logo.svg" class="logo" alt=""><h1 id="skmisc-shafayet-khan-miscellaneous-">skmisc (Shafayet Khan Miscellaneous) 
+<a class="anchor" aria-label="anchor" href="#skmisc-shafayet-khan-miscellaneous-"></a>
+</h1>
+</div>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://choosealicense.com/licenses/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License: MIT"></a> <a href="https://CRAN.R-project.org/package=skmisc" class="external-link"><img src="https://www.r-pkg.org/badges/version/skmisc" alt="CRAN status"></a> <a href="https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main" class="external-link"><img src="https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
+<p>The goal of <a href="https://github.com/shafayetShafee/skmisc" class="external-link">skmisc</a> is to provide some function that makes certain workflows easier. Currently, the only function that might be useful to anyone (who use Rmarkdown + LaTex) is <code><a href="reference/create_article_template.html">skmisc::create_article_template</a></code>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p><a href="https://github.com/shafayetShafee/skmisc" class="external-link">skmisc</a> is not on CRAN yet. You can install the development version of <a href="https://github.com/shafayetShafee/skmisc" class="external-link">skmisc</a> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"shafayetShafee/skmisc"</span><span class="op">)</span></span></code></pre></div>
+<p>or,</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"shafayetShafee/skmisc"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -69,9 +81,83 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="section level3">
+<h3 id="create-a-structured-article-template-for-a-journal-supported-by-rticles">Create a Structured Article Template for a Journal Supported by <code>{rticles}</code>
+<a class="anchor" aria-label="anchor" href="#create-a-structured-article-template-for-a-journal-supported-by-rticles"></a>
+</h3>
+<p>Suppose you want to format your manuscript following the <em>Statistics in Medicine (SIM)</em> style using the R package <a href="https://pkgs.rstudio.com/rticles/reference/article.html#sim-article" class="external-link"><code>rticles</code></a>. The standard approach is:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">draft</a></span><span class="op">(</span></span>
+<span>    <span class="st">"sim_article"</span>, </span>
+<span>    template <span class="op">=</span> <span class="st">"sim"</span>, </span>
+<span>    package <span class="op">=</span> <span class="st">"rticles"</span>,</span>
+<span>    create_dir <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    edit <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>This creates a directory named <code>sim_article</code> in your working directory, containing all the files required for the <em>SIM</em> format. The structure looks like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">sim_article</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">├──</span> bibfile.bib</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">├──</span> Fonts</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">│</span>   └── Stix</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="ex">├──</span> LETTERSP.STY</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">├──</span> skeleton.log</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">├──</span> sim_article.Rmd</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="ex">├──</span> WileyNJD-AMA.bst</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">└──</span> WileyNJD-v5.cls</span></code></pre></div>
+<p>This works well, but the structure has one limitation: you must write your entire manuscript in a single Rmd file. However, I personally prefer keeping different major sections in separate Rmd files for better organization and modular editing.</p>
+<p>That motivated the creation of the following function:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">skmisc</span><span class="fu">::</span><span class="fu"><a href="reference/create_article_template.html">create_article_template</a></span><span class="op">(</span><span class="st">"sim"</span><span class="op">)</span></span></code></pre></div>
+<p>Running this will create the directory <code>sim_article</code> with a more modular structure:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">sim_article</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">├──</span> abstract.Rmd</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">├──</span> bibfile.bib</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">├──</span> Example.Rmd</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">├──</span> Fonts</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">│</span>   └── Stix</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="ex">├──</span> LETTERSP.STY</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="ex">├──</span> sections</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="ex">│</span>   ├── section01.Rmd</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="ex">│</span>   ├── section02.Rmd</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="ex">│</span>   ├── section03.Rmd</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="ex">│</span>   ├── section04.Rmd</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="ex">│</span>   └── section05.Rmd</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="ex">├──</span> sim_article.Rmd</span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="ex">├──</span> skeleton.log</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="ex">├──</span> WileyNJD-AMA.bst</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="ex">└──</span> WileyNJD-v5.cls</span></code></pre></div>
+<p>In this layout, each major section lives in its own Rmd file, which the main file (<code>sim_article.Rmd</code>) includes as child documents. For example (non-essential YAML omitted):</p>
+<pre>
+---
+&lt;..TRUNCATED..&gt;
+abstract: |
+    `r paste(readLines("abstract.Rmd"), collapse = "\n  ")`
+&lt;..TRUNCATED..&gt;
+---
+
+```{r section01, child="sections/section01.Rmd"}
+```
+
+```{r section02, child="sections/section02.Rmd"}
+```
+
+```{r section03, child="sections/section03.Rmd"}
+```
+
+```{r section04, child="sections/section04.Rmd"}
+```
+
+```{r section05, child="sections/section05.Rmd"}
+```
+</pre>
+<p>To check the formatted pdf out, you just knit this main <code>sim_article.Rmd</code> file. This structure allows you to keep your manuscript clean, organized, and modular. Useful, innit? 🙂</p>
+<blockquote>
+<p>[!NOTE] <code><a href="reference/create_article_template.html">skmisc::create_article_template()</a></code> is a convenient wrapper around <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">rmarkdown::draft()</a></code> that lets you use any <a href="https://github.com/rstudio/rticles" class="external-link">rticles</a> journal format while working with multiple Rmd files. If you prefer the traditional single-file workflow, you should simply use <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">rmarkdown::draft()</a></code> with <a href="https://github.com/rstudio/rticles" class="external-link">rticles</a> directly.</p>
+</blockquote>
+</div>
+<div class="section level3">
 <h3 id="converting-the-title-of-bib-entries-in-a-bib-file-to-title-case">Converting the title of bib entries in a bib file to title case<a class="anchor" aria-label="anchor" href="#converting-the-title-of-bib-entries-in-a-bib-file-to-title-case"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/shafayetShafee/skmisc" class="external-link">skmisc</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">bib_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ref.bib"</span>, package <span class="op">=</span> <span class="st">"skmisc"</span><span class="op">)</span></span>
@@ -102,7 +188,7 @@
 <span><span class="va">tmp_output_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span>bib_file_path <span class="op">=</span> <span class="va">bib_file</span>, output_bib_file <span class="op">=</span> <span class="va">tmp_output_file</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Writing 2 Bibtex entries ... OK</span></span>
-<span><span class="co">#&gt; Results written to file '/var/folders/1b/g5rkw6nx0k96cs7rlxcrz63h0000gn/T//Rtmpp6f4OF/file94391bf2f1cc.bib'</span></span>
+<span><span class="co">#&gt; Results written to file '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpSZK8up/file15e335fb42776.bib'</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp_output_file</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @Article{merlo2005brief,</span></span>
@@ -125,12 +211,6 @@
 <span><span class="co">#&gt;   booktitle = {{Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"U}r Klassifikation eV, University of Potsdam, March 12--14, 1997}},</span></span>
 <span><span class="co">#&gt;   organization = {Springer},</span></span>
 <span><span class="co">#&gt; }</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="create-a-structured-article-template-for-a-specified-journal-supported-by-rticles">Create a Structured Article Template for a Specified Journal Supported by <code>{rticles}</code>
-<a class="anchor" aria-label="anchor" href="#create-a-structured-article-template-for-a-specified-journal-supported-by-rticles"></a>
-</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">create_article_template</span>(<span class="st">"arxiv"</span>)</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -158,6 +238,7 @@
 <div class="community">
 <h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
@@ -172,22 +253,30 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Shafayet Khan Shafee <br><small class="roles"> Author, maintainer </small>  </li>
+<li>
+<a href="https://shafayetshafee.github.io/" class="external-link">Shafayet Khan Shafee</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0009-0002-8021-3788" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
 
+
+<div class="table-of-contents">
+<h2 data-toc-skip>Table of contents</h2>
+<ul class="list-unstyled">
+<li><nav id="toc"></nav></li>
+</ul>
+</div>
 
   </aside>
 </div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Shafayet Khan Shafee.</p>
+  <p>Developed by <a href="https://shafayetshafee.github.io/" class="external-link">Shafayet Khan Shafee</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
