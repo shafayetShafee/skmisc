@@ -9,7 +9,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/shafayetShafee/skmisc/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/shafayetShafee/skmisc/blob/v0.1.2/DESCRIPTION)
 
 Shafee S (2025). *skmisc: Miscellaneous Functions by Shafayet Khan*. R
 package version 0.1.2, <https://github.com/shafayetShafee/skmisc>.
