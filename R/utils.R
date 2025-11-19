@@ -47,7 +47,7 @@ safe_title_case <- function(titles, component) {
       title <- ""
     }
 
-    protected <- stringr::str_extract_all(title, "\\{[^{}]+\\}")[[1]]
+    protected <- stringi::stri_extract_all_regex(title, "\\{[^{}]+\\}")[[1]]
 
     placeholder_title <- title
     if (length(protected) > 0) {

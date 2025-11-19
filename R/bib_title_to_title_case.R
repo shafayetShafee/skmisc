@@ -1,9 +1,23 @@
-#' Convert the title of each bibentry of a bib file to title case.
+#' Convert the title, booktitle, journal name of each bibentry of a bib file to title case.
 #'
 #' @param bib_file_path character, path to a `.bib` file.
 #'
 #' @param output_bib_file character, path to a `.bib` file that will contain
-#' the transformed bibentries with title-cased title.
+#' the transformed bib-entries with title-cased title.
+#'
+#' @param components Character vector specifying which BibTeX fields should be
+#'   converted to title case. Valid values include `"title"`, `"booktitle"`,
+#'   and `"journal"`. The special value `"all"` (the default) applies the
+#'   transformation to all supported fields.
+#'
+#'   Only the fields listed in `components` *and* present in the input `.bib`
+#'   file will be modified. Fields not included in `components` are left
+#'   unchanged.
+#'
+#'   Examples:
+#'   - `components = "all"` (default): modify `"title"`, `"booktitle"`, `"journal"`
+#'   - `components = "title"`: modify only article titles
+#'   - `components = c("title", "journal")`: modify both title and journal fields
 #'
 #' @param overwrite Logical. Should an existing output file be overwritten?
 #'   Defaults to `FALSE`. If `FALSE` and the file already exists, the function
@@ -13,13 +27,37 @@
 #' @return `output_bib_file` as a character string, invisibly.
 #'
 #' @examples
+#' # Example .bib file included with the package
 #' bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
+#'
+#' # Temporary output file
 #' tmp_output_file <- tempfile(fileext = ".bib")
-#' bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
+#'
+#' # Convert all supported components (default)
+#' bib_title_to_title_case(
+#'   bib_file_path = bib_file,
+#'   output_bib_file = tmp_output_file
+#' )
 #' cat(readLines(tmp_output_file), sep = "\n")
 #'
+#' # Convert only the title field
+#' tmp_title_only <- tempfile(fileext = ".bib")
+#' bib_title_to_title_case(
+#'   bib_file_path = bib_file,
+#'   output_bib_file = tmp_title_only,
+#'   components = "title"
+#' )
+#'
+#' # Convert title and journal fields only
+#' tmp_title_journal <- tempfile(fileext = ".bib")
+#' bib_title_to_title_case(
+#'   bib_file_path = bib_file,
+#'   output_bib_file = tmp_title_journal,
+#'   components = c("title", "journal")
+#' )
+#'
 #' @export
-bib_title_to_title_case <- function(bib_file_path, output_bib_file, overwrite=FALSE) {
+bib_title_to_title_case <- function(bib_file_path, output_bib_file, components="all", overwrite=FALSE) {
   if (!is_char_scalar(bib_file_path)) {
     cli::cli_abort(c(
       "!" = "Invalid input for `bib_file_path`.",
@@ -85,18 +123,34 @@ bib_title_to_title_case <- function(bib_file_path, output_bib_file, overwrite=FA
     ))
   }
 
+  valid_components <- c("title", "booktitle", "journal")
+
+  if (identical(components, "all")) {
+    components <- valid_components
+  } else {
+    if (!is.character(components) || anyNA(components)) {
+      cli::cli_abort(c(
+        "!" = "Invalid `components` argument.",
+        "x" = "`components` must be '{.emph all}' or a character vector containing any combination of {.var valid_components}"
+      ))
+    }
+
+    unknown <- setdiff(components, valid_components)
+    if (length(unknown) > 0) {
+      cli::cli_abort(c(
+        "!" = "Unknown components supplied.",
+        "x" = "Invalid fields: {unknown}",
+        "i" = "Valid components are: {.val {c('all', valid_components)}}."
+      ))
+    }
+  }
+
   bib_df <- RefManageR::ReadBib(bib_file_path) |> as.data.frame()
 
-  if ("title" %in% names(bib_df)) {
-    bib_df$title <- safe_title_case(bib_df$title, component = 'title')
-  }
-
-  if ("booktitle" %in% names(bib_df)) {
-    bib_df$booktitle <- safe_title_case(bib_df$booktitle, component = 'booktitle')
-  }
-
-  if ("journal" %in% names(bib_df)) {
-    bib_df$journal <- safe_title_case(bib_df$journal, component = 'journal')
+  for (comp in components) {
+    if (comp %in% names(bib_df)) {
+      bib_df[[comp]] <- safe_title_case(bib_df[[comp]], component = comp)
+    }
   }
 
   RefManageR::WriteBib(
