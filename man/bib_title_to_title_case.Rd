@@ -4,16 +4,21 @@
 \alias{bib_title_to_title_case}
 \title{Convert the title of each bibentry of a bib file to title case.}
 \usage{
-bib_title_to_title_case(bib_file_path, output_bib_file)
+bib_title_to_title_case(bib_file_path, output_bib_file, overwrite = FALSE)
 }
 \arguments{
 \item{bib_file_path}{character, path to a \code{.bib} file.}
 
 \item{output_bib_file}{character, path to a \code{.bib} file that will contain
 the transformed bibentries with title-cased title.}
+
+\item{overwrite}{Logical. Should an existing output file be overwritten?
+Defaults to \code{FALSE}. If \code{FALSE} and the file already exists, the function
+will abort with an informative message. If \code{TRUE}, the existing file will
+be replaced.}
 }
 \value{
-\code{bib_file_path} as a character string, invisibly.
+\code{output_bib_file} as a character string, invisibly.
 }
 \description{
 Convert the title of each bibentry of a bib file to title case.
