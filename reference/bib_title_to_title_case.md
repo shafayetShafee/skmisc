@@ -31,7 +31,7 @@ tmp_output_file <- tempfile(fileext = ".bib")
 bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
 #> Writing 2 Bibtex entries ... 
 #> OK
-#> Results written to file ‘/tmp/Rtmp0HHHDk/file189969f4a39d.bib’
+#> Results written to file ‘/tmp/RtmpDikRq9/file181157a838ff.bib’
 cat(readLines(tmp_output_file), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
