@@ -1,3 +1,10 @@
+# skmisc 0.1.3
+
+* Updated `bib_title_to_title_case` to use multi-line cli message formatting.
+* Added `cli` message formatting in create_article_template.
+* Started using R package [`cli`](https://cli.r-lib.org/) to format package messages consistently.
+
+
 # skmisc 0.1.2
 
 * Added the `create_article_template()` function that generates an article template for the
