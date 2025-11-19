@@ -23,4 +23,3 @@ test_that("Invalid Output file", {
     "Invalid `output_bib_file` path: Non-character supplied."
   )
 })
-

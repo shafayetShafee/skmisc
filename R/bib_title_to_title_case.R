@@ -27,7 +27,7 @@ bib_title_to_title_case <- function(bib_file_path, output_bib_file) {
     stop("Invalid `output_bib_file` path: Non-character supplied.", call. = FALSE)
   }
 
-  bib_df <-  RefManageR::ReadBib(bib_file_path) |> as.data.frame()
+  bib_df <- RefManageR::ReadBib(bib_file_path) |> as.data.frame()
   bib_df$title <- paste0("{", tools::toTitleCase(bib_df$title), "}")
   bib_df$booktitle <- paste0("{", tools::toTitleCase(bib_df$booktitle), "}")
   RefManageR::WriteBib(

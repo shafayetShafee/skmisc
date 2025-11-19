@@ -19,7 +19,6 @@
 #' create_article_template("arxiv")
 #' }
 create_article_template <- function(journal_name) {
-
   supported_journals <- rticles::journals()
 
   if (!journal_name %in% supported_journals) {
@@ -31,7 +30,8 @@ create_article_template <- function(journal_name) {
         "vec-trunc" = length(supported_journals)
       )
     )
-    cli::cli_abort(c(
+    cli::cli_abort(
+      c(
         "x" = "The jounal name '{.strong {journal_name}}' is not supported. ",
         "i" = "Please use one of the following journal names: {.val {supported_journals_formatted}}",
         "i" = "For details, see {.url https://pkgs.rstudio.com/rticles/reference/journals.html}"
@@ -69,11 +69,8 @@ create_article_template <- function(journal_name) {
   yaml_content <- rmarkdown::yaml_front_matter(article_file)
 
   if (!is.null(yaml_content$abstract) && nzchar(yaml_content$abstract)) {
-
     writeLines(yaml_content$abstract, abstract_file)
-
   } else {
-
     lorem_ipsum_text <- paste0(
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
       "Aenean ut elit odio. Donec fermentum tellus neque, vitae ",
