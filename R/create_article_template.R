@@ -113,5 +113,9 @@ create_article_template <- function(journal_name) {
   new_article_content <- c(yaml_str, "", child_chunks)
   writeLines(new_article_content, article_file)
 
-  message("Article structure for ", journal_name, " created successfully!")
+  cli::cli_alert_success(c(
+      "Article structure for '{.strong {journal_name}}' created successfully ",
+      "in the directory {.path {fs::path_abs(draft_dir)}}"
+    )
+  )
 }

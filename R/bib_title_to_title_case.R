@@ -16,15 +16,24 @@
 #' @export
 bib_title_to_title_case <- function(bib_file_path, output_bib_file) {
   if (!is.character(bib_file_path)) {
-    stop("Invalid `bib_file_path` path: Non-character supplied.", call. = FALSE)
+    cli::cli_abort(c(
+      "!" = "Invalid path: {.path {bib_file_path}}",
+      "x" = "Non-character supplied"
+    ))
   }
 
   if (as.numeric(file.access(bib_file_path, mode = 4)) != 0) {
-    stop("Invalid `bib_file_path` path: File is not readable.", call. = FALSE)
+    cli::cli_abort(c(
+      "!" = "Invalid path: {.path {bib_file_path}}",
+      "x" = "File is not readable"
+    ))
   }
 
   if (!is.character(output_bib_file)) {
-    stop("Invalid `output_bib_file` path: Non-character supplied.", call. = FALSE)
+    cli::cli_abort(c(
+      "!" = "Invalid `output_bib_file`: {.path {output_bib_file}}",
+      "x" = "Non-character supplied"
+    ))
   }
 
   bib_df <- RefManageR::ReadBib(bib_file_path) |> as.data.frame()
