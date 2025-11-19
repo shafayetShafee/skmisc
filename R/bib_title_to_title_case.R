@@ -139,7 +139,7 @@ bib_title_to_title_case <- function(bib_file_path, output_bib_file, components="
     if (length(unknown) > 0) {
       cli::cli_abort(c(
         "!" = "Unknown components supplied.",
-        "x" = "Invalid fields: {unknown}",
+        "x" = "Invalid field{?s}: {unknown}",
         "i" = "Valid components are: {.val {c('all', valid_components)}}."
       ))
     }
