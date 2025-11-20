@@ -5,6 +5,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://choosealicense.com/licenses/mit/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17648276.svg)](https://doi.org/10.5281/zenodo.17648275)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org/package=skmisc)
 [![Codecov test
