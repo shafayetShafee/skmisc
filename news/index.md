@@ -1,5 +1,26 @@
 # Changelog
 
+## skmisc 0.2.0
+
+### Function `bib_title_to_title_case`
+
+- Added `components` argument to selectively title-case fields
+  (`"title"`, `"booktitle"`, `"journal"`) or `"all"` fields (“all” by
+  default).
+- Added `overwrite` argument to control whether existing output files
+  are replaced.
+- Used safe_title_case() helper to protect text inside braces and safely
+  apply title case.
+- Input/output validation improved using [fs](https://fs.r-lib.org) and
+  [cli](https://cli.r-lib.org) for robust error messages.
+- Refactored component processing to a loop: fast, safe, avoids code
+  duplication.
+- Internal helpers
+  [`is_char_scalar()`](https://shafayetshafee.github.io/skmisc/reference/is_char_scalar.md)
+  and
+  [`wrap_braces_once()`](https://shafayetshafee.github.io/skmisc/reference/wrap_braces_once.md)
+  added.
+
 ## skmisc 0.1.3
 
 - Updated `bib_title_to_title_case` to use multi-line cli message

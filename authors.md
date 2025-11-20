@@ -9,15 +9,17 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/shafayetShafee/skmisc/blob/main/DESCRIPTION)
+[`inst/CITATION`](https://github.com/shafayetShafee/skmisc/blob/main/inst/CITATION)
 
-Shafee S (2025). *skmisc: Miscellaneous Functions by Shafayet Khan*. R
-package version 0.1.2, <https://github.com/shafayetShafee/skmisc>.
+Shafee S (2025). *shafayetShafee/skmisc: skmisc-v0.2.0*.
+[doi:10.5281/zenodo.17648276](https://doi.org/10.5281/zenodo.17648276),
+version 0.1.3, <https://doi.org/10.5281/zenodo.17648276>.
 
-    @Manual{,
-      title = {skmisc: Miscellaneous Functions by Shafayet Khan},
+    @Manual{skmisc,
+      title = {shafayetShafee/skmisc: skmisc-v0.2.0},
       author = {Shafayet Khan Shafee},
       year = {2025},
-      note = {R package version 0.1.2},
-      url = {https://github.com/shafayetShafee/skmisc},
+      note = {version 0.1.3},
+      doi = {10.5281/zenodo.17648276},
+      url = {https://doi.org/10.5281/zenodo.17648276},
     }

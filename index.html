@@ -32,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="index.html">skmisc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
 <a class="anchor" aria-label="anchor" href="#skmisc-shafayet-khan-miscellaneous-"></a>
 </h1>
 </div>
-<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://choosealicense.com/licenses/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License: MIT"></a> <a href="https://CRAN.R-project.org/package=skmisc" class="external-link"><img src="https://www.r-pkg.org/badges/version/skmisc" alt="CRAN status"></a> <a href="https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main" class="external-link"><img src="https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://choosealicense.com/licenses/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License: MIT"></a> <a href="https://doi.org/10.5281/zenodo.17648275" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.17648276.svg" alt="DOI"></a> <a href="https://CRAN.R-project.org/package=skmisc" class="external-link"><img src="https://www.r-pkg.org/badges/version/skmisc" alt="CRAN status"></a> <a href="https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main" class="external-link"><img src="https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
 <p>The goal of <a href="https://github.com/shafayetShafee/skmisc" class="external-link">skmisc</a> is to provide some function that makes certain workflows easier. Currently, the only function that might be useful to anyone (who use Rmarkdown + LaTex) is <code><a href="reference/create_article_template.html">skmisc::create_article_template</a></code>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -151,7 +151,7 @@ abstract: |
 </pre>
 <p>To check the formatted pdf out, you just knit this main <code>sim_article.Rmd</code> file. This structure allows you to keep your manuscript clean, organized, and modular. Useful, innit? 🙂</p>
 <blockquote>
-<p>[!NOTE] <code><a href="reference/create_article_template.html">skmisc::create_article_template()</a></code> is a convenient wrapper around <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">rmarkdown::draft()</a></code> that lets you use any <a href="https://github.com/rstudio/rticles" class="external-link">rticles</a> journal format while working with multiple Rmd files. If you prefer the traditional single-file workflow, you should simply use <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">rmarkdown::draft()</a></code> with <a href="https://github.com/rstudio/rticles" class="external-link">rticles</a> directly.</p>
+<p>[!NOTE] The function <code><a href="reference/create_article_template.html">skmisc::create_article_template()</a></code> is a convenient wrapper around <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">rmarkdown::draft()</a></code> that lets you use any <a href="https://github.com/rstudio/rticles" class="external-link">rticles</a> journal format while working with multiple Rmd files. If you prefer the traditional single-file workflow, you should simply use <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/draft.html" class="external-link">rmarkdown::draft()</a></code> with <a href="https://github.com/rstudio/rticles" class="external-link">rticles</a> directly.</p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -162,7 +162,7 @@ abstract: |
 <span></span>
 <span><span class="va">bib_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ref.bib"</span>, package <span class="op">=</span> <span class="st">"skmisc"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># The title of each bib entry is in sentence case.</span></span>
+<span><span class="co"># The original bib entries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">bib_file</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @article{merlo2005brief,</span></span>
 <span><span class="co">#&gt;   title={A brief conceptual tutorial of multilevel analysis in social epidemiology: linking the statistical concept of clustering to the idea of contextual phenomenon},</span></span>
@@ -184,17 +184,21 @@ abstract: |
 <span><span class="co">#&gt;   organization={Springer}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span></span>
-<span><span class="co"># converting the titles to title case.</span></span>
-<span><span class="va">tmp_output_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span>bib_file_path <span class="op">=</span> <span class="va">bib_file</span>, output_bib_file <span class="op">=</span> <span class="va">tmp_output_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 2 Bibtex entries ... OK</span></span>
-<span><span class="co">#&gt; Results written to file '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpSZK8up/file15e335fb42776.bib'</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp_output_file</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co"># Convert all supported components (default)</span></span>
+<span><span class="va">tmp_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span></span>
+<span>  bib_file_path <span class="op">=</span> <span class="va">bib_file</span>,</span>
+<span>  output_bib_file <span class="op">=</span> <span class="va">tmp_all</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; ! Invalid booktitle string: NA in the bib file</span></span>
+<span><span class="co">#&gt; ! Expected a single, non-NA character string; using empty string instead</span></span>
+<span><span class="co">#&gt; ! Invalid journal string: NA in the bib file</span></span>
+<span><span class="co">#&gt; ! Expected a single, non-NA character string; using empty string instead</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp_all</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @Article{merlo2005brief,</span></span>
-<span><span class="co">#&gt;   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},</span></span>
+<span><span class="co">#&gt;   title = {{NA}},</span></span>
 <span><span class="co">#&gt;   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},</span></span>
-<span><span class="co">#&gt;   journal = {Journal of Epidemiology \&amp; Community Health},</span></span>
+<span><span class="co">#&gt;   journal = {{NA}},</span></span>
 <span><span class="co">#&gt;   volume = {59},</span></span>
 <span><span class="co">#&gt;   number = {6},</span></span>
 <span><span class="co">#&gt;   pages = {443--449},</span></span>
@@ -204,13 +208,32 @@ abstract: |
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; @InProceedings{hox1998multilevel,</span></span>
-<span><span class="co">#&gt;   title = {{Multilevel Modeling: When and Why}},</span></span>
+<span><span class="co">#&gt;   title = {{NA}},</span></span>
 <span><span class="co">#&gt;   author = {Joop Hox},</span></span>
+<span><span class="co">#&gt;   journal = {{NA}},</span></span>
 <span><span class="co">#&gt;   pages = {147--154},</span></span>
 <span><span class="co">#&gt;   year = {1998},</span></span>
-<span><span class="co">#&gt;   booktitle = {{Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"U}r Klassifikation eV, University of Potsdam, March 12--14, 1997}},</span></span>
+<span><span class="co">#&gt;   booktitle = {{Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997}},</span></span>
 <span><span class="co">#&gt;   organization = {Springer},</span></span>
-<span><span class="co">#&gt; }</span></span></code></pre></div>
+<span><span class="co">#&gt; }</span></span>
+<span></span>
+<span><span class="co"># Convert only the title field</span></span>
+<span><span class="va">tmp_title_only</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span></span>
+<span>  bib_file_path <span class="op">=</span> <span class="va">bib_file</span>,</span>
+<span>  output_bib_file <span class="op">=</span> <span class="va">tmp_title_only</span>,</span>
+<span>  components <span class="op">=</span> <span class="st">"title"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert title and journal fields only</span></span>
+<span><span class="va">tmp_title_journal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span></span>
+<span>  bib_file_path <span class="op">=</span> <span class="va">bib_file</span>,</span>
+<span>  output_bib_file <span class="op">=</span> <span class="va">tmp_title_journal</span>,</span>
+<span>  components <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"journal"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; ! Invalid journal string: NA in the bib file</span></span>
+<span><span class="co">#&gt; ! Expected a single, non-NA character string; using empty string instead</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

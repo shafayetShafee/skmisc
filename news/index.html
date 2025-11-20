@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">skmisc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,19 @@
       <small>Source: <a href="https://github.com/shafayetShafee/skmisc/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="skmisc-020">skmisc 0.2.0<a class="anchor" aria-label="anchor" href="#skmisc-020"></a></h2>
+<div class="section level3">
+<h3 id="function-bib_title_to_title_case-0-2-0">Function <code>bib_title_to_title_case</code>
+<a class="anchor" aria-label="anchor" href="#function-bib_title_to_title_case-0-2-0"></a></h3>
+<ul><li>Added <code>components</code> argument to selectively title-case fields (<code>"title"</code>, <code>"booktitle"</code>, <code>"journal"</code>) or <code>"all"</code> fields (“all” by default).</li>
+<li>Added <code>overwrite</code> argument to control whether existing output files are replaced.</li>
+<li>Used safe_title_case() helper to protect text inside braces and safely apply title case.</li>
+<li>Input/output validation improved using <a href="https://fs.r-lib.org" class="external-link">fs</a> and <a href="https://cli.r-lib.org" class="external-link">cli</a> for robust error messages.</li>
+<li>Refactored component processing to a loop: fast, safe, avoids code duplication.</li>
+<li>Internal helpers <code><a href="../reference/is_char_scalar.html">is_char_scalar()</a></code> and <code><a href="../reference/wrap_braces_once.html">wrap_braces_once()</a></code> added.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.3" id="skmisc-013">skmisc 0.1.3<a class="anchor" aria-label="anchor" href="#skmisc-013"></a></h2>
 <ul><li>Updated <code>bib_title_to_title_case</code> to use multi-line cli message formatting.</li>
