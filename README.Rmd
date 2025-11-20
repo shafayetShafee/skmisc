@@ -141,10 +141,10 @@ This structure allows you to keep your manuscript clean, organized, and modular.
 Useful, innit? 🙂
 
 > [!NOTE]
-> `skmisc::create_article_template()` is a convenient wrapper around `rmarkdown::draft() `
-> that lets you use any `{rticles}` journal format while working with multiple Rmd files.
-> If you prefer the traditional single-file workflow, you should simply use `rmarkdown::draft()`
-> with `{rticles}` directly.
+> The function `skmisc::create_article_template()` is a convenient wrapper around
+> `rmarkdown::draft()` that lets you use any `{rticles}` journal format while working 
+> with multiple Rmd files. If you prefer the traditional single-file workflow, you 
+> should simply use `rmarkdown::draft()` with `{rticles}` directly.
 
 
 ### Converting the title of bib entries in a bib file to title case
@@ -155,14 +155,33 @@ library(skmisc)
 
 bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
 
-# The title of each bib entry is in sentence case.
+# The original bib entries
 cat(readLines(bib_file), sep = "\n")
 
-# converting the titles to title case.
-tmp_output_file <- tempfile(fileext = ".bib")
-bib_title_to_title_case(bib_file_path = bib_file, output_bib_file = tmp_output_file)
+# Convert all supported components (default)
+tmp_all <- tempfile(fileext = ".bib")
+bib_title_to_title_case(
+  bib_file_path = bib_file,
+  output_bib_file = tmp_all
+)
+cat(readLines(tmp_all), sep = "\n")
 
-cat(readLines(tmp_output_file), sep = "\n")
+# Convert only the title field
+tmp_title_only <- tempfile(fileext = ".bib")
+bib_title_to_title_case(
+  bib_file_path = bib_file,
+  output_bib_file = tmp_title_only,
+  components = "title"
+)
+
+# Convert title and journal fields only
+tmp_title_journal <- tempfile(fileext = ".bib")
+bib_title_to_title_case(
+  bib_file_path = bib_file,
+  output_bib_file = tmp_title_journal,
+  components = c("title", "journal")
+)
+
 ```
 
 
