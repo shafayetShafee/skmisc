@@ -1,6 +1,6 @@
 Package: skmisc
 Title: Miscellaneous Functions by Shafayet Khan
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: 
     person(
       given = "Shafayet Khan", 
@@ -22,6 +22,7 @@ Imports:
     RefManageR,
     rmarkdown,
     rticles,
+    stringi,
     yaml
 Suggests: 
     testthat (>= 3.0.0)
