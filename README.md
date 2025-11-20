@@ -129,11 +129,11 @@ To check the formatted pdf out, you just knit this main
 `sim_article.Rmd` file. This structure allows you to keep your
 manuscript clean, organized, and modular. Useful, innit? 🙂
 
-> \[!NOTE\] The function `skmisc::create_article_template()` is a
-> convenient wrapper around `rmarkdown::draft()` that lets you use any
-> `{rticles}` journal format while working with multiple Rmd files. If
-> you prefer the traditional single-file workflow, you should simply use
-> `rmarkdown::draft()` with `{rticles}` directly.
+> [!NOTE]
+> The function `skmisc::create_article_template()` is a convenient wrapper around
+> `rmarkdown::draft()` that lets you use any `{rticles}` journal format while working 
+> with multiple Rmd files. If you prefer the traditional single-file workflow, you 
+> should simply use `rmarkdown::draft()` with `{rticles}` directly.
 
 ### Converting the title of bib entries in a bib file to title case
 
