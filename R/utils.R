@@ -38,7 +38,6 @@ wrap_braces_once <- function(title) {
 #' @keywords internal
 safe_title_case <- function(titles, component) {
   vapply(titles, function(title) {
-
     if (!is_char_scalar(title)) {
       cli::cli_inform(c(
         "!" = "Invalid {component} string: {.val {title}} in the bib file",
@@ -47,7 +46,7 @@ safe_title_case <- function(titles, component) {
       title <- ""
     }
 
-    protected <- stringi::stri_extract_all_regex(title, "\\{[^{}]+\\}")[[1]]
+    protected <- stringi::stri_extract_all_regex(title, "\\{[^{}]+\\}", omit_no_match = TRUE)[[1]]
 
     placeholder_title <- title
     if (length(protected) > 0) {
