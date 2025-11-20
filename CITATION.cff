@@ -1,0 +1,322 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "skmisc" in publications use:'
+type: software
+license: MIT
+title: 'skmisc: Miscellaneous Functions by Shafayet Khan'
+version: 0.2.0
+abstract: Contains some function that makes certain workflows easier.
+authors:
+- family-names: Shafee
+  given-names: Shafayet Khan
+  email: sshafee@isrt.ac.bd
+  orcid: https://orcid.org/0009-0002-8021-3788
+repository-code: https://github.com/shafayetShafee/skmisc
+url: https://shafayetshafee.github.io/skmisc/
+contact:
+- family-names: Shafee
+  given-names: Shafayet Khan
+  email: sshafee@isrt.ac.bd
+  orcid: https://orcid.org/0009-0002-8021-3788
+keywords:
+- r
+- r-package
+- rmarkdown
+- rmarkdown-template
+- rticles
+references:
+- type: software
+  title: cli
+  abstract: 'cli: Helpers for Developing Command Line Interfaces'
+  notes: Imports
+  url: https://cli.r-lib.org
+  repository: https://CRAN.R-project.org/package=cli
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.cli
+- type: software
+  title: fs
+  abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
+  notes: Imports
+  url: https://fs.r-lib.org
+  repository: https://CRAN.R-project.org/package=fs
+  authors:
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.fs
+- type: software
+  title: RefManageR
+  abstract: 'RefManageR: Straightforward ''BibTeX'' and ''BibLaTeX'' Bibliography
+    Management'
+  notes: Imports
+  url: https://github.com/ropensci/RefManageR/
+  repository: https://CRAN.R-project.org/package=RefManageR
+  authors:
+  - family-names: McLean
+    given-names: Mathew W.
+    email: mathew.w.mclean@gmail.com
+    orcid: https://orcid.org/0000-0002-7891-9645
+  year: '2025'
+  doi: 10.32614/CRAN.package.RefManageR
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Imports
+  url: https://pkgs.rstudio.com/rmarkdown/
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@posit.co
+  - family-names: Luraschi
+    given-names: Javier
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@posit.co
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@posit.co
+  - family-names: Chang
+    given-names: Winston
+    email: winston@posit.co
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@posit.co
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2025'
+  doi: 10.32614/CRAN.package.rmarkdown
+- type: software
+  title: rticles
+  abstract: 'rticles: Article Formats for R Markdown'
+  notes: Imports
+  url: https://pkgs.rstudio.com/rticles/
+  repository: https://CRAN.R-project.org/package=rticles
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
+  - name: R Foundation
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - name: Journal of Statistical Software
+  - family-names: Vaidyanathan
+    given-names: Ramnath
+    email: ramnath.vaidya@gmail.com
+  - name: Association for Computing Machinery
+  - family-names: Boettiger
+    given-names: Carl
+    email: cboettig@gmail.com
+  - name: Elsevier
+  - family-names: Broman
+    given-names: Karl
+    email: kbroman@gmail.com
+  - family-names: Mueller
+    given-names: Kirill
+    email: kirill.mueller@ivt.baug.ethz.ch
+  - family-names: Quast
+    given-names: Bastiaan
+    email: bquast@gmail.com
+  - family-names: Pruim
+    given-names: Randall
+    email: rpruim@gmail.com
+  - family-names: Marwick
+    given-names: Ben
+    email: bmarwick@uw.edu
+  - family-names: Wickham
+    given-names: Charlotte
+    email: cwickham@gmail.com
+  - family-names: Keyes
+    given-names: Oliver
+    email: okeyes@wikimedia.org
+  - family-names: Yu
+    given-names: Miao
+    email: yufreecas@gmail.com
+  - family-names: Emaasit
+    given-names: Daniel
+    email: daniel.emaasit@gmail.com
+  - family-names: Onkelinx
+    given-names: Thierry
+    email: thierry.onkelinx@inbo.be
+  - family-names: Gasparini
+    given-names: Alessandro
+    email: ellessenne@gmail.com
+    orcid: https://orcid.org/0000-0002-8319-7624
+  - family-names: Desautels
+    given-names: Marc-Andre
+    email: marc-andre.desautels@cstjean.qc.ca
+  - family-names: Leutnant
+    given-names: Dominik
+    email: leutnant@fh-muenster.de
+    orcid: https://orcid.org/0000-0003-3293-2315
+  - name: MDPI
+  - name: Taylor and Francis
+  - family-names: Öğreden
+    given-names: Oğuzhan
+    orcid: https://orcid.org/0000-0002-9949-3348
+  - family-names: Hance
+    given-names: Dalton
+    email: dhance@usgs.gov
+  - family-names: Nüst
+    given-names: Daniel
+    email: daniel.nuest@uni-muenster.de
+    orcid: https://orcid.org/0000-0002-0024-5046
+  - family-names: Uvesten
+    given-names: Petter
+    email: petter.uvesten.7362@student.lu.se
+  - family-names: Campitelli
+    given-names: Elio
+    email: elio.campitelli@cima.fcen.uba.ar
+    orcid: https://orcid.org/0000-0002-7742-9230
+  - family-names: Muschelli
+    given-names: John
+    email: muschellij2@gmail.com
+    orcid: https://orcid.org/0000-0001-6469-1750
+  - family-names: Hayes
+    given-names: Alex
+    email: alexpghayes@gmail.com
+    orcid: https://orcid.org/0000-0002-4985-5160
+  - family-names: Kamvar
+    given-names: Zhian N.
+    email: zkamvar@gmail.com
+    orcid: https://orcid.org/0000-0003-1458-7108
+  - family-names: Ross
+    given-names: Noam
+    email: noam.ross@gmail.com
+    orcid: https://orcid.org/0000-0002-2136-0000
+  - family-names: Cannoodt
+    given-names: Robrecht
+    email: rcannood@gmail.com
+    orcid: https://orcid.org/0000-0003-3641-729X
+  - family-names: Luguern
+    given-names: Duncan
+    email: duncan.luguern@gmail.com
+  - family-names: Kaplan
+    given-names: David M.
+    email: dmkaplan2000@gmail.com
+    orcid: https://orcid.org/0000-0001-6087-359X
+  - family-names: Kreutzer
+    given-names: Sebastian
+    email: sebastian.kreutzer@aber.ac.uk
+    orcid: https://orcid.org/0000-0002-0734-2199
+  - family-names: Wang
+    given-names: Shixiang
+    email: w_shixiang@163.com
+    orcid: https://orcid.org/0000-0001-9855-7357
+  - family-names: Hesselberth
+    given-names: Jay
+    email: jay.hesselberth@gmail.com
+    orcid: https://orcid.org/0000-0002-6299-179X
+  - family-names: Hyndman
+    given-names: Rob
+    email: Rob.Hyndman@monash.edu
+    orcid: https://orcid.org/0000-0002-2140-5352
+  year: '2025'
+  doi: 10.32614/CRAN.package.rticles
+- type: software
+  title: stringi
+  abstract: 'stringi: Fast and Portable Character String Processing Facilities'
+  notes: Imports
+  url: https://stringi.gagolewski.com/
+  repository: https://CRAN.R-project.org/package=stringi
+  authors:
+  - family-names: Gagolewski
+    given-names: Marek
+    orcid: https://orcid.org/0000-0003-0637-6028
+  - family-names: Tartanus
+    given-names: Bartek
+  - family-names: Unicode
+    given-names: others;
+  - name: Inc.
+  - name: others
+  year: '2025'
+  doi: 10.32614/CRAN.package.stringi
+- type: software
+  title: yaml
+  abstract: 'yaml: Methods to Convert R Data to YAML and Back'
+  notes: Imports
+  url: https://github.com/vubiostat/r-yaml/
+  repository: https://CRAN.R-project.org/package=yaml
+  authors:
+  - family-names: Garbett
+    given-names: Shawn P
+  - family-names: Stephens
+    given-names: Jeremy
+  - family-names: Simonov
+    given-names: Kirill
+  - family-names: Xie
+    given-names: Yihui
+  - family-names: Dong
+    given-names: Zhuoer
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Horner
+    given-names: Jeffrey
+  - name: reikoch
+  - family-names: Beasley
+    given-names: Will
+  - family-names: O'Connor
+    given-names: Brendan
+  - family-names: Warnes
+    given-names: Gregory R.
+  - family-names: Quinn
+    given-names: Michael
+  - family-names: Kamvar
+    given-names: Zhian N.
+  - family-names: Gao
+    given-names: Charlie
+  year: '2025'
+  doi: 10.32614/CRAN.package.yaml
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.testthat
+  version: '>= 3.0.0'
+
