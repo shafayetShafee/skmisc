@@ -1,6 +1,6 @@
 Package: skmisc
 Title: Miscellaneous Functions by Shafayet Khan
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: 
     person(
       given = "Shafayet Khan", 
