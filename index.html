@@ -32,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="index.html">skmisc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,7 +186,7 @@ abstract: |
 <span></span>
 <span><span class="co"># Convert all supported components (default)</span></span>
 <span><span class="va">tmp_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="reference/bib_title_case.html">bib_title_case</a></span><span class="op">(</span></span>
 <span>  bib_file_path <span class="op">=</span> <span class="va">bib_file</span>,</span>
 <span>  output_bib_file <span class="op">=</span> <span class="va">tmp_all</span></span>
 <span><span class="op">)</span></span>
@@ -196,21 +196,21 @@ abstract: |
 <span><span class="co">#&gt; ! Expected a single, non-NA character string; using empty string instead</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp_all</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @Article{merlo2005brief,</span></span>
-<span><span class="co">#&gt;   title = {{NA}},</span></span>
+<span><span class="co">#&gt;   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},</span></span>
 <span><span class="co">#&gt;   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},</span></span>
-<span><span class="co">#&gt;   journal = {{NA}},</span></span>
+<span><span class="co">#&gt;   journal = {{Journal of Epidemiology \&amp; Community Health}},</span></span>
 <span><span class="co">#&gt;   volume = {59},</span></span>
 <span><span class="co">#&gt;   number = {6},</span></span>
 <span><span class="co">#&gt;   pages = {443--449},</span></span>
 <span><span class="co">#&gt;   year = {2005},</span></span>
 <span><span class="co">#&gt;   publisher = {BMJ Publishing Group Ltd},</span></span>
-<span><span class="co">#&gt;   booktitle = {{NA}},</span></span>
+<span><span class="co">#&gt;   booktitle = {{}},</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; @InProceedings{hox1998multilevel,</span></span>
-<span><span class="co">#&gt;   title = {{NA}},</span></span>
+<span><span class="co">#&gt;   title = {{Multilevel Modeling: When and Why}},</span></span>
 <span><span class="co">#&gt;   author = {Joop Hox},</span></span>
-<span><span class="co">#&gt;   journal = {{NA}},</span></span>
+<span><span class="co">#&gt;   journal = {{}},</span></span>
 <span><span class="co">#&gt;   pages = {147--154},</span></span>
 <span><span class="co">#&gt;   year = {1998},</span></span>
 <span><span class="co">#&gt;   booktitle = {{Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997}},</span></span>
@@ -219,21 +219,62 @@ abstract: |
 <span></span>
 <span><span class="co"># Convert only the title field</span></span>
 <span><span class="va">tmp_title_only</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="reference/bib_title_case.html">bib_title_case</a></span><span class="op">(</span></span>
 <span>  bib_file_path <span class="op">=</span> <span class="va">bib_file</span>,</span>
 <span>  output_bib_file <span class="op">=</span> <span class="va">tmp_title_only</span>,</span>
 <span>  components <span class="op">=</span> <span class="st">"title"</span></span>
 <span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp_title_only</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; @Article{merlo2005brief,</span></span>
+<span><span class="co">#&gt;   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},</span></span>
+<span><span class="co">#&gt;   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},</span></span>
+<span><span class="co">#&gt;   journal = {Journal of Epidemiology \&amp; Community Health},</span></span>
+<span><span class="co">#&gt;   volume = {59},</span></span>
+<span><span class="co">#&gt;   number = {6},</span></span>
+<span><span class="co">#&gt;   pages = {443--449},</span></span>
+<span><span class="co">#&gt;   year = {2005},</span></span>
+<span><span class="co">#&gt;   publisher = {BMJ Publishing Group Ltd},</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; @InProceedings{hox1998multilevel,</span></span>
+<span><span class="co">#&gt;   title = {{Multilevel Modeling: When and Why}},</span></span>
+<span><span class="co">#&gt;   author = {Joop Hox},</span></span>
+<span><span class="co">#&gt;   pages = {147--154},</span></span>
+<span><span class="co">#&gt;   year = {1998},</span></span>
+<span><span class="co">#&gt;   booktitle = {Classification, data analysis, and data highways: proceedings of the 21st Annual Conference of the Gesellschaft f{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997},</span></span>
+<span><span class="co">#&gt;   organization = {Springer},</span></span>
+<span><span class="co">#&gt; }</span></span>
 <span></span>
 <span><span class="co"># Convert title and journal fields only</span></span>
 <span><span class="va">tmp_title_journal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".bib"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/bib_title_to_title_case.html">bib_title_to_title_case</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="reference/bib_title_case.html">bib_title_case</a></span><span class="op">(</span></span>
 <span>  bib_file_path <span class="op">=</span> <span class="va">bib_file</span>,</span>
 <span>  output_bib_file <span class="op">=</span> <span class="va">tmp_title_journal</span>,</span>
 <span>  components <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"journal"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ! Invalid journal string: NA in the bib file</span></span>
-<span><span class="co">#&gt; ! Expected a single, non-NA character string; using empty string instead</span></span></code></pre></div>
+<span><span class="co">#&gt; ! Expected a single, non-NA character string; using empty string instead</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp_title_journal</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; @Article{merlo2005brief,</span></span>
+<span><span class="co">#&gt;   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},</span></span>
+<span><span class="co">#&gt;   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},</span></span>
+<span><span class="co">#&gt;   journal = {{Journal of Epidemiology \&amp; Community Health}},</span></span>
+<span><span class="co">#&gt;   volume = {59},</span></span>
+<span><span class="co">#&gt;   number = {6},</span></span>
+<span><span class="co">#&gt;   pages = {443--449},</span></span>
+<span><span class="co">#&gt;   year = {2005},</span></span>
+<span><span class="co">#&gt;   publisher = {BMJ Publishing Group Ltd},</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; @InProceedings{hox1998multilevel,</span></span>
+<span><span class="co">#&gt;   title = {{Multilevel Modeling: When and Why}},</span></span>
+<span><span class="co">#&gt;   author = {Joop Hox},</span></span>
+<span><span class="co">#&gt;   journal = {{}},</span></span>
+<span><span class="co">#&gt;   pages = {147--154},</span></span>
+<span><span class="co">#&gt;   year = {1998},</span></span>
+<span><span class="co">#&gt;   booktitle = {Classification, data analysis, and data highways: proceedings of the 21st Annual Conference of the Gesellschaft f{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997},</span></span>
+<span><span class="co">#&gt;   organization = {Springer},</span></span>
+<span><span class="co">#&gt; }</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

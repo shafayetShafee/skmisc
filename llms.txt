@@ -176,7 +176,7 @@ cat(readLines(bib_file), sep = "\n")
 
 # Convert all supported components (default)
 tmp_all <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
+bib_title_case(
   bib_file_path = bib_file,
   output_bib_file = tmp_all
 )
@@ -186,21 +186,21 @@ bib_title_to_title_case(
 #> ! Expected a single, non-NA character string; using empty string instead
 cat(readLines(tmp_all), sep = "\n")
 #> @Article{merlo2005brief,
-#>   title = {{NA}},
+#>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
 #>   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},
-#>   journal = {{NA}},
+#>   journal = {{Journal of Epidemiology \& Community Health}},
 #>   volume = {59},
 #>   number = {6},
 #>   pages = {443--449},
 #>   year = {2005},
 #>   publisher = {BMJ Publishing Group Ltd},
-#>   booktitle = {{NA}},
+#>   booktitle = {{}},
 #> }
 #> 
 #> @InProceedings{hox1998multilevel,
-#>   title = {{NA}},
+#>   title = {{Multilevel Modeling: When and Why}},
 #>   author = {Joop Hox},
-#>   journal = {{NA}},
+#>   journal = {{}},
 #>   pages = {147--154},
 #>   year = {1998},
 #>   booktitle = {{Classification, Data Analysis, and Data Highways: Proceedings of the 21st Annual Conference of the Gesellschaft F{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997}},
@@ -209,21 +209,62 @@ cat(readLines(tmp_all), sep = "\n")
 
 # Convert only the title field
 tmp_title_only <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
+bib_title_case(
   bib_file_path = bib_file,
   output_bib_file = tmp_title_only,
   components = "title"
 )
+cat(readLines(tmp_title_only), sep = "\n")
+#> @Article{merlo2005brief,
+#>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
+#>   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},
+#>   journal = {Journal of Epidemiology \& Community Health},
+#>   volume = {59},
+#>   number = {6},
+#>   pages = {443--449},
+#>   year = {2005},
+#>   publisher = {BMJ Publishing Group Ltd},
+#> }
+#> 
+#> @InProceedings{hox1998multilevel,
+#>   title = {{Multilevel Modeling: When and Why}},
+#>   author = {Joop Hox},
+#>   pages = {147--154},
+#>   year = {1998},
+#>   booktitle = {Classification, data analysis, and data highways: proceedings of the 21st Annual Conference of the Gesellschaft f{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997},
+#>   organization = {Springer},
+#> }
 
 # Convert title and journal fields only
 tmp_title_journal <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
+bib_title_case(
   bib_file_path = bib_file,
   output_bib_file = tmp_title_journal,
   components = c("title", "journal")
 )
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
+cat(readLines(tmp_title_journal), sep = "\n")
+#> @Article{merlo2005brief,
+#>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
+#>   author = {Juan Merlo and Basile Chaix and Min Yang and John Lynch and Lennart R{\r a}stam},
+#>   journal = {{Journal of Epidemiology \& Community Health}},
+#>   volume = {59},
+#>   number = {6},
+#>   pages = {443--449},
+#>   year = {2005},
+#>   publisher = {BMJ Publishing Group Ltd},
+#> }
+#> 
+#> @InProceedings{hox1998multilevel,
+#>   title = {{Multilevel Modeling: When and Why}},
+#>   author = {Joop Hox},
+#>   journal = {{}},
+#>   pages = {147--154},
+#>   year = {1998},
+#>   booktitle = {Classification, data analysis, and data highways: proceedings of the 21st Annual Conference of the Gesellschaft f{\"u}r Klassifikation eV, University of Potsdam, March 12--14, 1997},
+#>   organization = {Springer},
+#> }
 ```
 
 ## Code of Conduct
@@ -237,7 +278,7 @@ By contributing to this project, you agree to abide by its terms.
 
 ## All functions
 
-- [`bib_title_to_title_case()`](https://shafayetshafee.github.io/skmisc/reference/bib_title_to_title_case.md)
+- [`bib_title_case()`](https://shafayetshafee.github.io/skmisc/reference/bib_title_case.md)
   : Convert the title, booktitle, journal name of each bibentry of a bib
   file to title case.
 - [`create_article_template()`](https://shafayetshafee.github.io/skmisc/reference/create_article_template.md)
