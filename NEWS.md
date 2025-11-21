@@ -1,3 +1,8 @@
+# skmisc 0.3.0
+
+* Renamed the funciton `bib_title_to_title_case` to `bib_title_case` and used
+  `lifecycle::deprecate_warn`.
+
 # skmisc 0.2.0
 
 ## Function `bib_title_to_title_case`

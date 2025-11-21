@@ -162,7 +162,7 @@ cat(readLines(bib_file), sep = "\n")
 
 # Convert all supported components (default)
 tmp_all <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
+bib_title_case(
   bib_file_path = bib_file,
   output_bib_file = tmp_all
 )
@@ -170,20 +170,21 @@ cat(readLines(tmp_all), sep = "\n")
 
 # Convert only the title field
 tmp_title_only <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
+bib_title_case(
   bib_file_path = bib_file,
   output_bib_file = tmp_title_only,
   components = "title"
 )
+cat(readLines(tmp_title_only), sep = "\n")
 
 # Convert title and journal fields only
 tmp_title_journal <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
+bib_title_case(
   bib_file_path = bib_file,
   output_bib_file = tmp_title_journal,
   components = c("title", "journal")
 )
-
+cat(readLines(tmp_title_journal), sep = "\n")
 ```
 
 
