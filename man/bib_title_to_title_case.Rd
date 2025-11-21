@@ -4,74 +4,27 @@
 \alias{bib_title_to_title_case}
 \title{Convert the title, booktitle, journal name of each bibentry of a bib file to title case.}
 \usage{
-bib_title_to_title_case(
-  bib_file_path,
-  output_bib_file,
-  components = "all",
-  overwrite = FALSE
-)
-}
-\arguments{
-\item{bib_file_path}{character, path to a \code{.bib} file.}
-
-\item{output_bib_file}{character, path to a \code{.bib} file that will contain
-the transformed bib-entries with title-cased title.}
-
-\item{components}{Character vector specifying which BibTeX fields should be
-converted to title case. Valid values include \code{"title"}, \code{"booktitle"},
-and \code{"journal"}. The special value \code{"all"} (the default) applies the
-transformation to all supported fields.
-
-Only the fields listed in \code{components} \emph{and} present in the input \code{.bib}
-file will be modified. Fields not included in \code{components} are left
-unchanged.
-
-Examples:
-\itemize{
-\item \code{components = "all"} (default): modify \code{"title"}, \code{"booktitle"}, \code{"journal"}
-\item \code{components = "title"}: modify only article titles
-\item \code{components = c("title", "journal")}: modify both title and journal fields
-}}
-
-\item{overwrite}{Logical. Should an existing output file be overwritten?
-Defaults to \code{FALSE}. If \code{FALSE} and the file already exists, the function
-will abort with an informative message. If \code{TRUE}, the existing file will
-be replaced.}
+bib_title_to_title_case(...)
 }
 \value{
-\code{output_bib_file} as a character string, invisibly.
+The return value of \code{\link[=bib_title_case]{bib_title_case()}}.
 }
 \description{
-Convert the title, booktitle, journal name of each bibentry of a bib file to title case.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+\code{bib_title_to_title_case()} has been deprecated in \strong{v0.3.0} and will be
+removed in a future release.
+Please use \code{\link[=bib_title_case]{bib_title_case()}} instead.
+
+This function remains as a compatibility wrapper and simply forwards all
+arguments to \code{bib_title_case()}.
 }
-\examples{
-# Example .bib file included with the package
-bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
-
-# Temporary output file
-tmp_output_file <- tempfile(fileext = ".bib")
-
-# Convert all supported components (default)
-bib_title_to_title_case(
-  bib_file_path = bib_file,
-  output_bib_file = tmp_output_file
-)
-cat(readLines(tmp_output_file), sep = "\n")
-
-# Convert only the title field
-tmp_title_only <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
-  bib_file_path = bib_file,
-  output_bib_file = tmp_title_only,
-  components = "title"
-)
-
-# Convert title and journal fields only
-tmp_title_journal <- tempfile(fileext = ".bib")
-bib_title_to_title_case(
-  bib_file_path = bib_file,
-  output_bib_file = tmp_title_journal,
-  components = c("title", "journal")
-)
-
+\details{
+This function takes any arguments (\code{...}) and passes them directly to
+\code{\link[=bib_title_case]{bib_title_case()}}. See that function's documentation for full argument
+details.
 }
+\seealso{
+\code{\link[=bib_title_case]{bib_title_case()}}
+}
+\keyword{internal}
