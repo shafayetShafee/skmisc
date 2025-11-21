@@ -9,7 +9,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/shafayetShafee/skmisc/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/shafayetShafee/skmisc/blob/v0.3.0/inst/CITATION)
 
 Shafee S (2025). *shafayetShafee/skmisc: skmisc-v0.2.0*.
 [doi:10.5281/zenodo.17648276](https://doi.org/10.5281/zenodo.17648276),
