@@ -38,19 +38,32 @@ stri_squish <- function(x) {
 #' @keywords internal
 #' @noRd
 clean_condition_message <- function(cond) {
+  if (inherits(cond, "try-error")) {
+    cond <- attr(cond, "condition")
+  }
+
   cond_msg <- conditionMessage(cond)
-  if (nzchar(cond_msg)) {
-    tag_removed_text <- sub(
-      pattern = "^\\s*(Error|Warning):?\\s*",
-      replacement = "",
-      x = cond_msg
-    )
-    clean_msg <- stri_squish(tag_removed_text)
-    return(clean_msg)
-  } else {
+
+  if (length(cond_msg) == 0L || !nzchar(stringi::stri_trim_both(cond_msg))) {
     return(NA_character_)
   }
+
+  tag_removed_text <- sub(
+    pattern = "^\\s*(Error|Warning):?\\s*",
+    replacement = "",
+    x = cond_msg,
+    ignore.case = TRUE
+  )
+
+  clean_msg <- stri_squish(tag_removed_text)
+
+  if (!nzchar(clean_msg)) {
+    return(NA_character_)
+  }
+
+  return(clean_msg)
 }
+
 
 
 #' Drop NA and empty string elements from a character vector

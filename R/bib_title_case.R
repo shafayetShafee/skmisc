@@ -170,6 +170,10 @@ bib_title_case <- function(bib_file_path, output_bib_file, components="all", ove
 #' @keywords internal
 #' @noRd
 safe_title_case <- function(titles, component=NULL) {
+  if (is.null(titles)) {
+    return("{}")
+  }
+
   vapply(titles, function(title) {
     title <- trimws(title)
 
@@ -331,7 +335,7 @@ safe_write_bib <- function(bib_df, output_bib_file) {
   },
   message = function(m) {
     msg <- clean_condition_message(m)
-    cli::cli_inform(na.omit(c("*" = cli::col_blue("{msg}"))))
+    cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
     invokeRestart("muffleMessage")
   },
   success = function(sc) {
