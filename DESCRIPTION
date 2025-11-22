@@ -19,6 +19,7 @@ BugReports: https://github.com/shafayetShafee/skmisc/issues
 Imports: 
     cli,
     fs,
+    glue,
     lifecycle,
     RefManageR,
     rmarkdown,
