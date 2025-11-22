@@ -259,7 +259,7 @@ safe_read_bib <- function(bib_file_path) {
       err_msg <- clean_condition_message(e)
       cli::cli_abort(drop_string_NA(c(
         "x" = cli::col_red("Occurred when reading the BibTeX file: {.file {bib_file_path}}"),
-        "!" = glue::glue("{err_msg}")
+        "i" = glue::glue("{err_msg}")
       )), call = NULL)
     })
 
@@ -274,7 +274,7 @@ safe_read_bib <- function(bib_file_path) {
   },
   message = function(m) {
     msg <- clean_condition_message(m)
-    cli::cli_inform(na.omit(c("*" = cli::col_blue("{msg}"))))
+    cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
     invokeRestart("muffleMessage")
   }
  )
@@ -284,19 +284,20 @@ safe_read_bib <- function(bib_file_path) {
 #' Safely write a BibTeX file with formatted diagnostics
 #'
 #' This internal helper wraps \code{textRefManageR::WriteBib()} in a
-#' \code{tryCatch()} block to provide robust handling of errors, warnings,
-#' and messages using the \pkg{cli} package for formatted output.
+#' \code{tryCatch()} block to provide robust handling of warnings and messages
+#' using the \pkg{cli} package for formatted output.
 #'
-#' On success, the function writes the BibTeX file and returns \code{TRUE}.
-#' If an error occurs, a formatted diagnostic is emitted and \code{FALSE} is
-#' returned. Warnings and messages are displayed but do not affect the
-#' return value.
+#' On success, the function writes the BibTeX file and returns \code{TRUE} (invisibly).
+#' Warnings and messages are displayed but do not affect the return value.
+#' If an error occurs, a formatted error is emitted via \code{cli_abort()} and
+#' execution is stopped.
 #'
 #' @param bib_df A data frame of BibTeX fields suitable for conversion via
 #'   \code{RefManageR::as.BibEntry()}.
 #' @param output_bib_file A file path where the BibTeX file will be written.
 #'
-#' @return Logical scalar: \code{TRUE} on success, \code{FALSE} on error.
+#' @return `invisible(TRUE)` on success. On error, aborts via `cli_abort()`
+#'   and does **not** return.
 #'
 #' @keywords internal
 #' @noRd
@@ -308,12 +309,14 @@ safe_write_bib <- function(bib_df, output_bib_file) {
         file = output_bib_file,
         verbose = FALSE
       )
+      signal_success(glue::glue("{output_bib_file}"))
+      return(invisible(TRUE))
     },
     error = function(e) {
       err_msg <- clean_condition_message(e)
       cli::cli_abort(drop_string_NA(c(
         "x" = cli::col_red("Occurred when writing the BibTeX file: {.file {output_bib_file}}"),
-        "!" = glue::glue("{err_msg}")
+        "i" = glue::glue("{err_msg}")
       )), call = NULL)
     }
    )
@@ -321,8 +324,8 @@ safe_write_bib <- function(bib_df, output_bib_file) {
   warning = function(w) {
     warn_msg <- clean_condition_message(w)
     cli::cli_warn(drop_string_NA(c(
-      "!" = cli::col_yellow("Warning while writing the BibTeX file: {.file {output_bib_file}}"),
-      "!" = glue::glue("{warn_msg}")
+      "!" = cli::col_yellow("Occured while writing the BibTeX file: {.file {output_bib_file}}"),
+      "i" = glue::glue("{warn_msg}")
     )))
     invokeRestart("muffleWarning")
   },
@@ -330,6 +333,12 @@ safe_write_bib <- function(bib_df, output_bib_file) {
     msg <- clean_condition_message(m)
     cli::cli_inform(na.omit(c("*" = cli::col_blue("{msg}"))))
     invokeRestart("muffleMessage")
+  },
+  success = function(sc) {
+    sc_msg <- conditionMessage(sc)
+    cli::cli_inform(c(
+      "v" = "Successfully wrote BibTeX file: {.file {sc_msg}}"
+    ))
   }
  )
 }

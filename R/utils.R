@@ -91,3 +91,36 @@ wrap_braces_once <- function(title) {
   }
 }
 
+#' Signal a custom "success" condition
+#'
+#' This helper function constructs and signals a custom condition of class
+#' `"success"`. It allows downstream `withCallingHandlers()` or other condition
+#' handlers to react to a successful event in the same structured way that
+#' warnings, messages, and errors are handled.
+#'
+#' The condition carries a single field, `message`, which stores the success
+#' message to be emitted or processed by a handler.
+#'
+#' @param msg A character string containing the success message.
+#'
+#' @details
+#' This function is intended for internal use in situations where you want to
+#' decouple success reporting from core logic—for example, inside a `tryCatch`
+#' block where emitting a message directly would interfere with message
+#' handlers or formatting rules.
+#'
+#' @return
+#' Invisibly returns `NULL`. The primary purpose is the side effect of signaling
+#' a condition.
+#'
+#' @keywords internal
+#' @noRd
+signal_success <- function(msg) {
+  cond <- structure(
+    list(message = msg),
+    class = c("success", "condition")
+  )
+  signalCondition(cond)
+}
+
+
