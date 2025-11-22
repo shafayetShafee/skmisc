@@ -168,6 +168,7 @@ bib_title_case <- function(bib_file_path, output_bib_file, components="all", ove
 #' @param component Either of 'title', 'booktitle' or 'journal'
 #' @return character vector of titles, wrapped in single braces, with protected content intact
 #' @keywords internal
+#' @noRd
 safe_title_case <- function(titles, component=NULL) {
   vapply(titles, function(title) {
     title <- trimws(title)
@@ -237,6 +238,7 @@ safe_title_case <- function(titles, component=NULL) {
 #' The function aborts with a formatted error message on failure.
 #'
 #' @keywords internal
+#' @noRd
 safe_read_bib <- function(bib_file_path) {
   withCallingHandlers({
     tryCatch({
@@ -254,25 +256,25 @@ safe_read_bib <- function(bib_file_path) {
       }
     },
     error = function(e) {
-      err_msg <- stri_squish(conditionMessage(e))
-      cli::cli_abort(c(
+      err_msg <- clean_condition_message(e)
+      cli::cli_abort(drop_string_NA(c(
         "x" = cli::col_red("Occurred when reading the BibTeX file: {.file {bib_file_path}}"),
-        "!" = "{err_msg}"
-      ), call = NULL)
+        "!" = glue::glue("{err_msg}")
+      )), call = NULL)
     })
 
   },
   warning = function(w) {
-    warn_msg <- stri_squish(conditionMessage(w))
-    cli::cli_warn(c(
+    warn_msg <- clean_condition_message(w)
+    cli::cli_warn(drop_string_NA(c(
       "!" = cli::col_yellow("Occured when reading the BibTeX file: {.file {bib_file_path}}"),
-      "i" = "{warn_msg}"
-    ))
+      "i" = glue::glue("{warn_msg}")
+    )))
     invokeRestart("muffleWarning")
   },
   message = function(m) {
-    msg <- stri_squish(conditionMessage(m))
-    cli::cli_inform(c("*" = cli::col_blue("{msg}")))
+    msg <- clean_condition_message(m)
+    cli::cli_inform(na.omit(c("*" = cli::col_blue("{msg}"))))
     invokeRestart("muffleMessage")
   }
  )
@@ -297,6 +299,7 @@ safe_read_bib <- function(bib_file_path) {
 #' @return Logical scalar: \code{TRUE} on success, \code{FALSE} on error.
 #'
 #' @keywords internal
+#' @noRd
 safe_write_bib <- function(bib_df, output_bib_file) {
   withCallingHandlers({
     tryCatch({
@@ -307,25 +310,25 @@ safe_write_bib <- function(bib_df, output_bib_file) {
       )
     },
     error = function(e) {
-      err_msg <- stri_squish(conditionMessage(e))
-      cli::cli_abort(c(
+      err_msg <- clean_condition_message(e)
+      cli::cli_abort(drop_string_NA(c(
         "x" = cli::col_red("Occurred when writing the BibTeX file: {.file {output_bib_file}}"),
-        "!" = "{err_msg}"
-      ), call = NULL)
+        "!" = glue::glue("{err_msg}")
+      )), call = NULL)
     }
    )
   },
   warning = function(w) {
-    warn_msg <- stri_squish(conditionMessage(w))
-    cli::cli_warn(c(
+    warn_msg <- clean_condition_message(w)
+    cli::cli_warn(drop_string_NA(c(
       "!" = cli::col_yellow("Warning while writing the BibTeX file: {.file {output_bib_file}}"),
-      "{warn_msg}"
-    ))
+      "!" = glue::glue("{warn_msg}")
+    )))
     invokeRestart("muffleWarning")
   },
   message = function(m) {
-    msg <- stri_squish(conditionMessage(m))
-    cli::cli_inform(c("*" = cli::col_blue("{msg}")))
+    msg <- clean_condition_message(m)
+    cli::cli_inform(na.omit(c("*" = cli::col_blue("{msg}"))))
     invokeRestart("muffleMessage")
   }
  )
