@@ -3,7 +3,7 @@
 test_that("is_char_scalar() returns TRUE for valid single characters", {
   expect_true(is_char_scalar("a"))
   expect_true(is_char_scalar("hello"))
-  expect_true(is_char_scalar(" "))  # space is a valid non-empty character
+  expect_true(is_char_scalar(" ")) # space is a valid non-empty character
 })
 
 test_that("is_char_scalar() returns FALSE for empty or NA characters or NULL", {
@@ -82,9 +82,9 @@ test_that("clean_condition_message works with errors, warnings and messages", {
   warn <- simpleWarning("Warning:  deprecated function ")
   msg <- simpleMessage("  just a message here  ")
 
-  expect_equal(clean_condition_message(err),  "something went wrong")
+  expect_equal(clean_condition_message(err), "something went wrong")
   expect_equal(clean_condition_message(warn), "deprecated function")
-  expect_equal(clean_condition_message(msg),  "just a message here")
+  expect_equal(clean_condition_message(msg), "just a message here")
 })
 
 test_that("prefixes are removed correctly (with/without colon, mixed case)", {
@@ -105,9 +105,9 @@ test_that("whitespace is properly squished and trimmed", {
 
 
 test_that("empty messages return NA", {
-  empty_err  <- simpleError("")
-  space_err  <- simpleError("   \t\n   ")
-  null_err   <- simpleError(character(0))
+  empty_err <- simpleError("")
+  space_err <- simpleError("   \t\n   ")
+  null_err <- simpleError(character(0))
 
   expect_equal(clean_condition_message(empty_err), NA_character_)
   expect_equal(clean_condition_message(space_err), NA_character_)
@@ -148,4 +148,3 @@ test_that("drop_string_NA returns empty vector when all are removed", {
 test_that("drop_string_NA preserves spaces and other whitespace", {
   expect_equal(drop_string_NA(c("  hi  ", "\t", "   ")), c("  hi  ", "\t", "   "))
 })
-

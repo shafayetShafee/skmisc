@@ -5,13 +5,13 @@ write_bib <- function(content, file = tempfile(fileext = ".bib")) {
 
 
 test_that("safe_read_bib successfully reads a valid BibTeX file", {
-  bib_content <- '
+  bib_content <- "
   @article{merlo2005brief,
     title={A brief conceptual tutorial},
     author={Merlo, Juan},
     journal={Journal},
     year={2005}
-  }'
+  }"
 
   path <- write_bib(bib_content)
   expect_silent(result <- safe_read_bib(path))
@@ -35,13 +35,13 @@ test_that("missing required fields for @article triggers error", {
   # @article requires at least: author, title, journal, year
   cases <- list(
     # missing author
-    '@article{key, title = {T}, journal = {J}, year = {2020}}',
+    "@article{key, title = {T}, journal = {J}, year = {2020}}",
     # missing title
-    '@article{key, author = {A}, journal = {J}, year = {2020}}',
+    "@article{key, author = {A}, journal = {J}, year = {2020}}",
     # missing journal
-    '@article{key, author = {A}, title = {T}, year = {2020}}',
+    "@article{key, author = {A}, title = {T}, year = {2020}}",
     # missing year
-    '@article{key, author = {A}, title = {T}, journal = {J}}'
+    "@article{key, author = {A}, title = {T}, journal = {J}}"
   )
 
   for (bib in cases) {
@@ -58,10 +58,10 @@ test_that("missing required fields for @article triggers error", {
 test_that("missing required fields for @inproceedings triggers error", {
   # @inproceedings requires: author, title, booktitle, year
   cases <- list(
-    '@inproceedings{key, title = {T}, booktitle = {B}, year = {2020}}',
-    '@inproceedings{key, author = {A}, booktitle = {B}, year = {2020}}',
-    '@inproceedings{key, author = {A}, title = {T}, year = {2020}}',
-    '@inproceedings{key, author = {A}, title = {T}, booktitle = {B}}'
+    "@inproceedings{key, title = {T}, booktitle = {B}, year = {2020}}",
+    "@inproceedings{key, author = {A}, booktitle = {B}, year = {2020}}",
+    "@inproceedings{key, author = {A}, title = {T}, year = {2020}}",
+    "@inproceedings{key, author = {A}, title = {T}, booktitle = {B}}"
   )
 
   for (bib in cases) {
@@ -77,8 +77,8 @@ test_that("missing required fields for @inproceedings triggers error", {
 test_that("empty file or only comments returns error (all entries ignored)", {
   cases <- c(
     "% just a comment",
-    "",                     # completely empty
-    "   \n   \t   ",        # whitespace only
+    "", # completely empty
+    "   \n   \t   ", # whitespace only
     "@comment{this is ignored}"
   )
 
@@ -101,14 +101,14 @@ test_that("non-existent file triggers clear error", {
 
 
 test_that("file path with spaces and special chars works", {
-  bib_content <- '@misc{test, title = {Works with spaces}}'
+  bib_content <- "@misc{test, title = {Works with spaces}}"
   path <- write_bib(bib_content, file = tempfile(pattern = "my bib file ", fileext = ".bib"))
   expect_s3_class(safe_read_bib(path), "data.frame")
 })
 
 
 test_that("safe_read_bib handles multiple entries and filters ignored ones", {
-  bib_content <- '
+  bib_content <- "
   @article{good1,
     title={Good Title},
     author={Author A},
@@ -120,7 +120,7 @@ test_that("safe_read_bib handles multiple entries and filters ignored ones", {
     author={Missing title but has author},
     journal={J2},
     year={2021}
-  }'
+  }"
 
   path <- write_bib(bib_content)
 
@@ -137,10 +137,10 @@ test_that("safe_read_bib handles multiple entries and filters ignored ones", {
 
 
 test_that("safe_read_bib errors gracefully on malformed BibTeX", {
-  bad_bib <- '
+  bad_bib <- "
   @article{oops
     title = {Missing comma and brace}
-  '
+  "
 
   path <- write_bib(bad_bib)
 

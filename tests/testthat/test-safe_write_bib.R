@@ -1,7 +1,8 @@
 create_example_bib_df <- function() {
   tmp <- tempfile(fileext = ".bib")
   writeLines(
-    c("@book{knuth1984,",
+    c(
+      "@book{knuth1984,",
       "  author    = {Knuth, Donald E.},",
       "  title     = {The TeXbook},",
       "  year      = {1984},",
@@ -13,7 +14,8 @@ create_example_bib_df <- function() {
       "  title   = {A brief tutorial},",
       "  journal = {JECH},",
       "  year    = {2005}",
-      "}"),
+      "}"
+    ),
     tmp
   )
   as.data.frame(RefManageR::ReadBib(tmp))
@@ -117,7 +119,7 @@ test_that("safe_write_bib aborts on permission denied (read-only file)", {
   df <- create_example_bib_df()
   tmp <- tempfile(fileext = ".bib")
   writeLines("% dummy", tmp)
-  Sys.chmod(tmp, mode = "0444")  # read-only
+  Sys.chmod(tmp, mode = "0444") # read-only
 
   expect_error(
     suppressWarnings(safe_write_bib(df, tmp)),
@@ -138,7 +140,7 @@ test_that("safe_write_bib aborts on non-data.frame inputs", {
     class = "rlang_error"
   )
   expect_error(
-    safe_write_bib(list(a=1), tmp),
+    safe_write_bib(list(a = 1), tmp),
     regexp = "Occurred when writing",
     class = "rlang_error"
   )
@@ -148,4 +150,3 @@ test_that("safe_write_bib aborts on non-data.frame inputs", {
     class = "rlang_error"
   )
 })
-

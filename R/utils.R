@@ -135,5 +135,3 @@ signal_success <- function(msg) {
   )
   signalCondition(cond)
 }
-
-

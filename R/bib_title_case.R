@@ -57,7 +57,7 @@
 #' )
 #'
 #' @export
-bib_title_case <- function(bib_file_path, output_bib_file, components="all", overwrite=FALSE) {
+bib_title_case <- function(bib_file_path, output_bib_file, components = "all", overwrite = FALSE) {
   if (!is_char_scalar(bib_file_path)) {
     cli::cli_abort(c(
       "!" = "Invalid input for `bib_file_path`.",
@@ -169,7 +169,7 @@ bib_title_case <- function(bib_file_path, output_bib_file, components="all", ove
 #' @return character vector of titles, wrapped in single braces, with protected content intact
 #' @keywords internal
 #' @noRd
-safe_title_case <- function(titles, component=NULL) {
+safe_title_case <- function(titles, component = NULL) {
   if (is.null(titles)) {
     return("{}")
   }
@@ -216,7 +216,6 @@ safe_title_case <- function(titles, component=NULL) {
     }
 
     wrap_braces_once(title_case)
-
   }, FUN.VALUE = character(1), USE.NAMES = FALSE)
 }
 
@@ -244,44 +243,46 @@ safe_title_case <- function(titles, component=NULL) {
 #' @keywords internal
 #' @noRd
 safe_read_bib <- function(bib_file_path) {
-  withCallingHandlers({
-    tryCatch({
-      bib_entries <- RefManageR::ReadBib(file = bib_file_path)
-      bib_fields <- RefManageR::fields(bib_entries)
+  withCallingHandlers(
+    {
+      tryCatch(
+        {
+          bib_entries <- RefManageR::ReadBib(file = bib_file_path)
+          bib_fields <- RefManageR::fields(bib_entries)
 
-      if(length(bib_fields) > 0) {
-        bib_df <- as.data.frame(bib_entries)
-        return(bib_df)
-      } else {
-        stop(
-          "All of the bib entries are ignored while parsing the file due to some reason",
-          call. = FALSE
-        )
-      }
+          if (length(bib_fields) > 0) {
+            bib_df <- as.data.frame(bib_entries)
+            return(bib_df)
+          } else {
+            stop(
+              "All of the bib entries are ignored while parsing the file due to some reason",
+              call. = FALSE
+            )
+          }
+        },
+        error = function(e) {
+          err_msg <- clean_condition_message(e)
+          cli::cli_abort(drop_string_NA(c(
+            "x" = cli::col_red("Occurred when reading the BibTeX file: {.file {bib_file_path}}"),
+            "i" = glue::glue("{err_msg}")
+          )), call = NULL)
+        }
+      )
     },
-    error = function(e) {
-      err_msg <- clean_condition_message(e)
-      cli::cli_abort(drop_string_NA(c(
-        "x" = cli::col_red("Occurred when reading the BibTeX file: {.file {bib_file_path}}"),
-        "i" = glue::glue("{err_msg}")
-      )), call = NULL)
-    })
-
-  },
-  warning = function(w) {
-    warn_msg <- clean_condition_message(w)
-    cli::cli_warn(drop_string_NA(c(
-      "!" = cli::col_yellow("Occured when reading the BibTeX file: {.file {bib_file_path}}"),
-      "i" = glue::glue("{warn_msg}")
-    )))
-    invokeRestart("muffleWarning")
-  },
-  message = function(m) {
-    msg <- clean_condition_message(m)
-    cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
-    invokeRestart("muffleMessage")
-  }
- )
+    warning = function(w) {
+      warn_msg <- clean_condition_message(w)
+      cli::cli_warn(drop_string_NA(c(
+        "!" = cli::col_yellow("Occured when reading the BibTeX file: {.file {bib_file_path}}"),
+        "i" = glue::glue("{warn_msg}")
+      )))
+      invokeRestart("muffleWarning")
+    },
+    message = function(m) {
+      msg <- clean_condition_message(m)
+      cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
+      invokeRestart("muffleMessage")
+    }
+  )
 }
 
 
@@ -306,43 +307,45 @@ safe_read_bib <- function(bib_file_path) {
 #' @keywords internal
 #' @noRd
 safe_write_bib <- function(bib_df, output_bib_file) {
-  withCallingHandlers({
-    tryCatch({
-      RefManageR::WriteBib(
-        RefManageR::as.BibEntry(bib_df),
-        file = output_bib_file,
-        verbose = FALSE
+  withCallingHandlers(
+    {
+      tryCatch(
+        {
+          RefManageR::WriteBib(
+            RefManageR::as.BibEntry(bib_df),
+            file = output_bib_file,
+            verbose = FALSE
+          )
+          signal_success(glue::glue("{output_bib_file}"))
+          return(invisible(TRUE))
+        },
+        error = function(e) {
+          err_msg <- clean_condition_message(e)
+          cli::cli_abort(drop_string_NA(c(
+            "x" = cli::col_red("Occurred when writing the BibTeX file: {.file {output_bib_file}}"),
+            "i" = glue::glue("{err_msg}")
+          )), call = NULL)
+        }
       )
-      signal_success(glue::glue("{output_bib_file}"))
-      return(invisible(TRUE))
     },
-    error = function(e) {
-      err_msg <- clean_condition_message(e)
-      cli::cli_abort(drop_string_NA(c(
-        "x" = cli::col_red("Occurred when writing the BibTeX file: {.file {output_bib_file}}"),
-        "i" = glue::glue("{err_msg}")
-      )), call = NULL)
+    warning = function(w) {
+      warn_msg <- clean_condition_message(w)
+      cli::cli_warn(drop_string_NA(c(
+        "!" = cli::col_yellow("Occured while writing the BibTeX file: {.file {output_bib_file}}"),
+        "i" = glue::glue("{warn_msg}")
+      )))
+      invokeRestart("muffleWarning")
+    },
+    message = function(m) {
+      msg <- clean_condition_message(m)
+      cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
+      invokeRestart("muffleMessage")
+    },
+    success = function(sc) {
+      sc_msg <- conditionMessage(sc)
+      cli::cli_inform(c(
+        "v" = "Successfully wrote BibTeX file: {.file {sc_msg}}"
+      ))
     }
-   )
-  },
-  warning = function(w) {
-    warn_msg <- clean_condition_message(w)
-    cli::cli_warn(drop_string_NA(c(
-      "!" = cli::col_yellow("Occured while writing the BibTeX file: {.file {output_bib_file}}"),
-      "i" = glue::glue("{warn_msg}")
-    )))
-    invokeRestart("muffleWarning")
-  },
-  message = function(m) {
-    msg <- clean_condition_message(m)
-    cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
-    invokeRestart("muffleMessage")
-  },
-  success = function(sc) {
-    sc_msg <- conditionMessage(sc)
-    cli::cli_inform(c(
-      "v" = "Successfully wrote BibTeX file: {.file {sc_msg}}"
-    ))
-  }
- )
+  )
 }

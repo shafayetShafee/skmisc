@@ -114,8 +114,7 @@ create_article_template <- function(journal_name) {
   writeLines(new_article_content, article_file)
 
   cli::cli_alert_success(c(
-      "Article structure for '{.strong {journal_name}}' created successfully ",
-      "in the directory {.path {fs::path_abs(draft_dir)}}"
-    )
-  )
+    "Article structure for '{.strong {journal_name}}' created successfully ",
+    "in the directory {.path {fs::path_abs(draft_dir)}}"
+  ))
 }

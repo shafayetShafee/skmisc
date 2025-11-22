@@ -20,4 +20,3 @@ test_that("Invalid Output file", {
     bib_title_case(input_file_name, 43)
   })
 })
-
