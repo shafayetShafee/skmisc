@@ -145,7 +145,7 @@ bib_title_case <- function(bib_file_path, output_bib_file, components="all", ove
     }
   }
 
-  bib_df <- RefManageR::ReadBib(bib_file_path) |> as.data.frame()
+  bib_df <- safe_read_bib(bib_file_path = bib_file_path)
 
   for (comp in components) {
     if (comp %in% names(bib_df)) {
@@ -153,11 +153,180 @@ bib_title_case <- function(bib_file_path, output_bib_file, components="all", ove
     }
   }
 
-  RefManageR::WriteBib(
-    RefManageR::as.BibEntry(bib_df),
-    file = output_bib_file,
-    verbose = FALSE
+  safe_write_bib(
+    bib_df = bib_df,
+    output_bib_file = output_bib_file
   )
 
   invisible(output_bib_file)
+}
+
+
+#' Safely convert titles to title case, preserving protected braces
+#'
+#' @param titles character vector of BibTeX titles
+#' @param component Either of 'title', 'booktitle' or 'journal'
+#' @return character vector of titles, wrapped in single braces, with protected content intact
+#' @keywords internal
+safe_title_case <- function(titles, component=NULL) {
+  vapply(titles, function(title) {
+    title <- trimws(title)
+
+    if (!is_char_scalar(title)) {
+      cli::cli_inform(c(
+        "!" = "Invalid {component} string: {.val {title}} in the bib file",
+        "!" = "Expected a single, non-NA character string; using empty string instead"
+      ))
+      title <- ""
+    }
+
+    protected <- stringi::stri_extract_all_regex(title, "\\{[^{}]+\\}", omit_no_match = TRUE)[[1]]
+
+    placeholder_title <- title
+    if (length(protected) > 0) {
+      placeholders <- paste0("%%", seq_along(protected), "%%")
+
+      placeholder_title <- stringi::stri_replace_all_fixed(
+        placeholder_title,
+        protected,
+        placeholders,
+        vectorize_all = FALSE
+      )
+    }
+
+    title_case <- sub(
+      pattern = "^\\b([[:alpha:]])",
+      replacement = "\\U\\1",
+      x = tools::toTitleCase(placeholder_title),
+      perl = TRUE
+    )
+
+    if (length(protected) > 0) {
+      title_case <- stringi::stri_replace_all_fixed(
+        title_case,
+        paste0("%%", seq_along(protected), "%%"),
+        protected,
+        vectorize_all = FALSE
+      )
+    }
+
+    wrap_braces_once(title_case)
+
+  }, FUN.VALUE = character(1), USE.NAMES = FALSE)
+}
+
+
+#' @title Safely read a BibTeX file with formatted diagnostics
+#'
+#' @description
+#' This internal helper wraps [RefManageR::ReadBib()] with structured
+#' condition handling to provide robust error, warning, and message reporting
+#' using the {cli} package.
+#'
+#' @details
+#' The function attempts to read and parse a BibTeX file into a data frame.
+#' On success, the parsed entries are returned. If parsing results in ignored or
+#' empty entries, or if any fatal error occurs, a formatted diagnostic is emitted
+#' and the function aborts. Warnings and messages from RefManageR are displayed
+#' with {cli} formatting but do not stop execution.
+#'
+#' @param bib_file_path Path to a BibTeX (.bib) file to be read.
+#'
+#' @return
+#' A data frame of parsed BibTeX fields on success.
+#' The function aborts with a formatted error message on failure.
+#'
+#' @keywords internal
+safe_read_bib <- function(bib_file_path) {
+  withCallingHandlers({
+    tryCatch({
+      bib_entries <- RefManageR::ReadBib(file = bib_file_path)
+      bib_fields <- RefManageR::fields(bib_entries)
+
+      if(length(bib_fields) > 0) {
+        bib_df <- as.data.frame(bib_entries)
+        return(bib_df)
+      } else {
+        stop(
+          "All of the bib entries are ignored while parsing the file due to some reason",
+          call. = FALSE
+        )
+      }
+    },
+    error = function(e) {
+      err_msg <- stri_squish(conditionMessage(e))
+      cli::cli_abort(c(
+        "x" = cli::col_red("Occurred when reading the BibTeX file: {.file {bib_file_path}}"),
+        "!" = "{err_msg}"
+      ), call = NULL)
+    })
+
+  },
+  warning = function(w) {
+    warn_msg <- stri_squish(conditionMessage(w))
+    cli::cli_warn(c(
+      "!" = cli::col_yellow("Occured when reading the BibTeX file: {.file {bib_file_path}}"),
+      "i" = "{warn_msg}"
+    ))
+    invokeRestart("muffleWarning")
+  },
+  message = function(m) {
+    msg <- stri_squish(conditionMessage(m))
+    cli::cli_inform(c("*" = cli::col_blue("{msg}")))
+    invokeRestart("muffleMessage")
+  }
+ )
+}
+
+
+#' Safely write a BibTeX file with formatted diagnostics
+#'
+#' This internal helper wraps \code{textRefManageR::WriteBib()} in a
+#' \code{tryCatch()} block to provide robust handling of errors, warnings,
+#' and messages using the \pkg{cli} package for formatted output.
+#'
+#' On success, the function writes the BibTeX file and returns \code{TRUE}.
+#' If an error occurs, a formatted diagnostic is emitted and \code{FALSE} is
+#' returned. Warnings and messages are displayed but do not affect the
+#' return value.
+#'
+#' @param bib_df A data frame of BibTeX fields suitable for conversion via
+#'   \code{RefManageR::as.BibEntry()}.
+#' @param output_bib_file A file path where the BibTeX file will be written.
+#'
+#' @return Logical scalar: \code{TRUE} on success, \code{FALSE} on error.
+#'
+#' @keywords internal
+safe_write_bib <- function(bib_df, output_bib_file) {
+  withCallingHandlers({
+    tryCatch({
+      RefManageR::WriteBib(
+        RefManageR::as.BibEntry(bib_df),
+        file = output_bib_file,
+        verbose = FALSE
+      )
+    },
+    error = function(e) {
+      err_msg <- stri_squish(conditionMessage(e))
+      cli::cli_abort(c(
+        "x" = cli::col_red("Occurred when writing the BibTeX file: {.file {output_bib_file}}"),
+        "!" = "{err_msg}"
+      ), call = NULL)
+    }
+   )
+  },
+  warning = function(w) {
+    warn_msg <- stri_squish(conditionMessage(w))
+    cli::cli_warn(c(
+      "!" = cli::col_yellow("Warning while writing the BibTeX file: {.file {output_bib_file}}"),
+      "{warn_msg}"
+    ))
+    invokeRestart("muffleWarning")
+  },
+  message = function(m) {
+    msg <- stri_squish(conditionMessage(m))
+    cli::cli_inform(c("*" = cli::col_blue("{msg}")))
+    invokeRestart("muffleMessage")
+  }
+ )
 }
