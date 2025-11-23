@@ -38,12 +38,15 @@ test_that("safe_title_case handles empty strings", {
   })
 })
 
-
-test_that("safe_title_case warns and substitutes empty string for invalid input", {
-  expect_snapshot({
-    safe_title_case(1, "title")
-  })
-})
+# fmt: skip
+test_that(
+  desc = "safe_title_case warns and substitutes empty string for invalid input",
+  code = {
+    expect_snapshot({
+      safe_title_case(1, "title")
+    })
+  }
+)
 
 
 test_that("safe_title_case works for multiple titles in a vector", {

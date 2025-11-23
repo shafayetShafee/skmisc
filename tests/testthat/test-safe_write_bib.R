@@ -58,36 +58,44 @@ bib_df_with_dup_key <- function() {
 }
 
 
-test_that("safe_write_bib succeeds with valid data and returns invisible(TRUE)", {
-  df <- create_example_bib_df()
-  tmp <- tempfile(fileext = ".bib")
-  res <- safe_write_bib(df, tmp)
+# fmt: skip
+test_that(
+  desc = "safe_write_bib succeeds with valid data and returns invisible(TRUE)",
+  code = {
+    df <- create_example_bib_df()
+    tmp <- tempfile(fileext = ".bib")
+    res <- safe_write_bib(df, tmp)
 
-  expect_message(
-    res <- safe_write_bib(df, tmp),
-    regexp = "Successfully wrote BibTeX file",
-    class = "rlang_message"
-  )
+    expect_message(
+      res <- safe_write_bib(df, tmp),
+      regexp = "Successfully wrote BibTeX file",
+      class = "rlang_message"
+    )
 
-  expect_true(res)
-  expect_true(file.exists(tmp))
-  expect_gt(file.info(tmp)$size, 50)
-  expect_silent(RefManageR::ReadBib(tmp))
-})
+    expect_true(res)
+    expect_true(file.exists(tmp))
+    expect_gt(file.info(tmp)$size, 50)
+    expect_silent(RefManageR::ReadBib(tmp))
+  }
+)
 
 
-test_that("safe_write_bib aborts when bibliography has zero entries (no 'bibtype' column)", {
-  bad_empty_df <- empty_bib_df()
+# fmt: skip
+test_that(
+  desc = "safe_write_bib aborts for empty bib df (no 'bibtype' column)",
+  code = {
+    bad_empty_df <- empty_bib_df()
 
-  tmp <- tempfile(fileext = ".bib")
+    tmp <- tempfile(fileext = ".bib")
 
-  expect_error(
-    safe_write_bib(bad_empty_df, tmp),
-    regexp = "Occurred when writing the BibTeX file",
-    class = "rlang_error"
-  )
-  expect_false(file.exists(tmp))
-})
+    expect_error(
+      safe_write_bib(bad_empty_df, tmp),
+      regexp = "Occurred when writing the BibTeX file",
+      class = "rlang_error"
+    )
+    expect_false(file.exists(tmp))
+  }
+)
 
 
 test_that("safe_write_bib aborts on zero-row df with bibtype column", {

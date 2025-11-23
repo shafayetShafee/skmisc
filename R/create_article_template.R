@@ -1,24 +1,25 @@
-#' Create a structured article template for a specified journal
+#' Create a structured article template directory for a specified journal
 #'
-#' Generate an article template for a given journal using
-#' \code{rmarkdown::draft} from the \code{rticles} package. The function
-#' checks whether the journal is supported, creates needed directories and
-#' files, and formats the \code{<journal_name>_article.Rmd} file with
+#' Generates a ready-to-use article template for a journal supported by the
+#' **`rticles`** package. The function creates the draft with
+#' [rmarkdown::draft()], sets up a clean directory structure (a separate
+#' `sections/` folder and an `abstract.Rmd` file), moves the abstract texts out
+#' of the YAML front-matter, inserts child-document chunks for five default
+#' sections, and formats the `<journal_name>_article.Rmd` file with
 #' section chunks and an abstract.
 #'
-#' @param journal_name A character string naming the journal for which the
-#' article template will be created. It must be one of the journals listed
-#' by \code{rticles::journals()}.
+#' @param journal_name Character string giving the name of the journal.
+#'   Must be one of the journals returned by [rticles::journals()].
 #'
-#' @return This function returns no value. It creates the directory
-#' structure for the article template, including the required \code{Rmd}
-#' files for sections and the abstract.
+#' @return Invisibly returns the path to the created directory. The function is
+#'   called primarily for its side effect of creating files on disk.
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' create_article_template("arxiv")
+#' create_article_template("peerj")
 #' }
 create_article_template <- function(journal_name) {
   supported_journals <- rticles::journals()
@@ -113,8 +114,16 @@ create_article_template <- function(journal_name) {
   new_article_content <- c(yaml_str, "", child_chunks)
   writeLines(new_article_content, article_file)
 
-  cli::cli_alert_success(c(
-    "Article structure for '{.strong {journal_name}}' created successfully ",
+  success_msg <- paste0(
+    "Article template for '{.strong {journal_name}}' created successfully ",
     "in the directory {.path {fs::path_abs(draft_dir)}}"
+  )
+
+  cli::cli_inform(c(
+    "v" = success_msg,
+    "i" = "Directory structure: "
   ))
+
+  fs::dir_tree(path = draft_dir, recurse = TRUE)
+  invisible(draft_dir)
 }

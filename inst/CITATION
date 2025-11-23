@@ -2,14 +2,14 @@ citHeader("To cite skmisc use:")
 
 bibentry(
   key      = "skmisc",
-  bibtype  = "Manual",
-  title    = "shafayetShafee/skmisc: skmisc-v0.2.0",
+  bibtype  = "Misc",
+  title    = "shafayetShafee/skmisc: skmisc-v0.5.0",
   author   = person(given = "Shafayet Khan",
                    family = "Shafee",
                    email = "sshafee@isrt.ac.bd",
                    comment = c(ORCID = "0009-0002-8021-3788")),
-  year     = 2025,
-  note     = "version 0.1.3",
+  year     = "2025",
+  note     = "version 0.5.0",
   doi      = "10.5281/zenodo.17648276",
   url      = "https://doi.org/10.5281/zenodo.17648276"
 )
