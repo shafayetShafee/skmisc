@@ -105,7 +105,11 @@ test_that("safe_write_bib aborts on zero-row df with bibtype column", {
 
 test_that("safe_write_bib aborts when output directory does not exist", {
   df <- create_example_bib_df()
-  bad_path <- file.path(tempdir(), "this_directory_does_not_exist_12345", "out.bib")
+  bad_path <- file.path(
+    tempdir(),
+    "this_directory_does_not_exist_12345",
+    "out.bib"
+  )
 
   expect_error(
     suppressWarnings(safe_write_bib(df, bad_path)),

@@ -1,4 +1,5 @@
-#' @title Convert the title, booktitle, journal name of each bibentry of a bib file to title case.
+#' @title Convert the title, booktitle, journal name of each bibentry of a bib
+#'    file to title case.
 #'
 #' @description
 #' `r lifecycle::badge("deprecated")`
