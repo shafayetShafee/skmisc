@@ -102,7 +102,10 @@ test_that("non-existent file triggers clear error", {
 
 test_that("file path with spaces and special chars works", {
   bib_content <- "@misc{test, title = {Works with spaces}}"
-  path <- write_bib(bib_content, file = tempfile(pattern = "my bib file ", fileext = ".bib"))
+  path <- write_bib(
+    bib_content,
+    file = tempfile(pattern = "my bib file ", fileext = ".bib")
+  )
   expect_s3_class(safe_read_bib(path), "data.frame")
 })
 

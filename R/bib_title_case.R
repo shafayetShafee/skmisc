@@ -1,4 +1,5 @@
-#' Convert the title, booktitle, journal name of each bibentry of a bib file to title case.
+#' Convert the title, booktitle, journal name of each bibentry of a bib file
+#' to title case.
 #'
 #' @param bib_file_path character, path to a `.bib` file.
 #'
@@ -15,9 +16,11 @@
 #'   unchanged.
 #'
 #'   Examples:
-#'   - `components = "all"` (default): modify `"title"`, `"booktitle"`, `"journal"`
+#'   - `components = "all"` (default): modify title, booktitle, and
+#'      journal name
 #'   - `components = "title"`: modify only article titles
-#'   - `components = c("title", "journal")`: modify both title and journal fields
+#'   - `components = c("title", "journal")`: modify both title and
+#'      journal name
 #'
 #' @param overwrite Logical. Should an existing output file be overwritten?
 #'   Defaults to `FALSE`. If `FALSE` and the file already exists, the function
@@ -57,39 +60,47 @@
 #' )
 #'
 #' @export
-bib_title_case <- function(bib_file_path, output_bib_file, components = "all", overwrite = FALSE) {
+bib_title_case <- function(
+  bib_file_path,
+  output_bib_file,
+  components = "all",
+  overwrite = FALSE
+) {
   if (!is_char_scalar(bib_file_path)) {
     cli::cli_abort(c(
-      "!" = "Invalid input for `bib_file_path`.",
-      "x" = "It must be a non-NA character scalar."
+      "x" = "Invalid input for `bib_file_path`.",
+      "i" = "It must be a non-NA character scalar."
     ))
   }
 
-  if (!fs::file_exists(bib_file_path) || !fs::file_access(bib_file_path, "read")) {
+  if (
+    !fs::file_exists(bib_file_path) ||
+      !fs::file_access(bib_file_path, "read")
+  ) {
     cli::cli_abort(c(
-      "!" = "Invalid path: {.path {bib_file_path}}",
-      "x" = "File does not exist or is not readable."
+      "x" = "Invalid path: {.path {bib_file_path}}",
+      "i" = "File does not exist or is not readable."
     ))
   }
 
   if (!fs::is_file(bib_file_path)) {
     cli::cli_abort(c(
-      "!" = "Invalid input path: {.path {bib_file_path}}",
-      "x" = "The path exists but is not a file."
+      "x" = "Invalid input path: {.path {bib_file_path}}",
+      "i" = "The path exists but is not a file."
     ))
   }
 
   if (fs::path_ext(bib_file_path) != "bib") {
     cli::cli_abort(c(
-      "!" = "Invalid file type: {.path {bib_file_path}}",
-      "x" = "Input file must have extension '.bib'."
+      "x" = "Invalid file type: {.path {bib_file_path}}",
+      "i" = "Input file must have extension '.bib'."
     ))
   }
 
   if (!is_char_scalar(output_bib_file)) {
     cli::cli_abort(c(
-      "!" = "Invalid `output_bib_file` argument.",
-      "x" = "It must be a single, non-NA character string."
+      "x" = "Invalid `output_bib_file` argument.",
+      "i" = "It must be a single, non-NA character string."
     ))
   }
 
@@ -104,15 +115,15 @@ bib_title_case <- function(bib_file_path, output_bib_file, components = "all", o
 
   if (!fs::file_access(output_dir, "write")) {
     cli::cli_abort(c(
-      "!" = "Cannot write to output directory: {.path {output_dir}}",
-      "x" = "Write permission denied."
+      "x" = "Cannot write to output directory: {.path {output_dir}}",
+      "i" = "Write permission denied."
     ))
   }
 
   if (fs::path_ext(output_bib_file) != "bib") {
     cli::cli_abort(c(
-      "!" = "Invalid output file: {.path {output_bib_file}}",
-      "x" = "Output file must have extension '{.emph .bib}'."
+      "x" = "Invalid output file: {.path {output_bib_file}}",
+      "i" = "Output file must have extension '{.emph .bib}'."
     ))
   }
 
@@ -129,9 +140,13 @@ bib_title_case <- function(bib_file_path, output_bib_file, components = "all", o
     components <- valid_components
   } else {
     if (!is.character(components) || anyNA(components)) {
+      inf_msg_components <- paste0(
+        "`components` must be '{.emph all}' or a character vector ",
+        "containing any combination of {.var valid_components}"
+      )
       cli::cli_abort(c(
-        "!" = "Invalid `components` argument.",
-        "x" = "`components` must be '{.emph all}' or a character vector containing any combination of {.var valid_components}"
+        "x" = "Invalid `components` argument.",
+        "i" = inf_msg_components
       ))
     }
 
@@ -166,7 +181,8 @@ bib_title_case <- function(bib_file_path, output_bib_file, components = "all", o
 #'
 #' @param titles character vector of BibTeX titles
 #' @param component Either of 'title', 'booktitle' or 'journal'
-#' @return character vector of titles, wrapped in single braces, with protected content intact
+#' @return character vector of titles, wrapped in single braces, with
+#'    protected content intact
 #' @keywords internal
 #' @noRd
 safe_title_case <- function(titles, component = NULL) {
@@ -174,49 +190,62 @@ safe_title_case <- function(titles, component = NULL) {
     return("{}")
   }
 
-  vapply(titles, function(title) {
-    title <- trimws(title)
+  vapply(
+    titles,
+    function(title) {
+      title <- trimws(title)
 
-    if (!is_char_scalar(title)) {
-      cli::cli_inform(c(
-        "!" = "Invalid {component} string: {.val {title}} in the bib file",
-        "!" = "Expected a single, non-NA character string; using empty string instead"
-      ))
-      title <- ""
-    }
+      if (!is_char_scalar(title)) {
+        inf_msg_char_scalar <- paste0(
+          "Expected a single, non-NA character string; ",
+          "using empty string instead"
+        )
+        cli::cli_inform(c(
+          "!" = "Invalid {component} string: {.val {title}} in the bib file",
+          "!" = inf_msg_char_scalar
+        ))
+        title <- ""
+      }
 
-    protected <- stringi::stri_extract_all_regex(title, "\\{[^{}]+\\}", omit_no_match = TRUE)[[1]]
+      protected <- stringi::stri_extract_all_regex(
+        str = title,
+        pattern = "\\{[^{}]+\\}",
+        omit_no_match = TRUE
+      )[[1]]
 
-    placeholder_title <- title
-    if (length(protected) > 0) {
-      placeholders <- paste0("%%", seq_along(protected), "%%")
+      placeholder_title <- title
+      if (length(protected) > 0) {
+        placeholders <- paste0("%%", seq_along(protected), "%%")
 
-      placeholder_title <- stringi::stri_replace_all_fixed(
-        placeholder_title,
-        protected,
-        placeholders,
-        vectorize_all = FALSE
+        placeholder_title <- stringi::stri_replace_all_fixed(
+          placeholder_title,
+          protected,
+          placeholders,
+          vectorize_all = FALSE
+        )
+      }
+
+      title_case <- sub(
+        pattern = "^\\b([[:alpha:]])",
+        replacement = "\\U\\1",
+        x = tools::toTitleCase(placeholder_title),
+        perl = TRUE
       )
-    }
 
-    title_case <- sub(
-      pattern = "^\\b([[:alpha:]])",
-      replacement = "\\U\\1",
-      x = tools::toTitleCase(placeholder_title),
-      perl = TRUE
-    )
+      if (length(protected) > 0) {
+        title_case <- stringi::stri_replace_all_fixed(
+          title_case,
+          paste0("%%", seq_along(protected), "%%"),
+          protected,
+          vectorize_all = FALSE
+        )
+      }
 
-    if (length(protected) > 0) {
-      title_case <- stringi::stri_replace_all_fixed(
-        title_case,
-        paste0("%%", seq_along(protected), "%%"),
-        protected,
-        vectorize_all = FALSE
-      )
-    }
-
-    wrap_braces_once(title_case)
-  }, FUN.VALUE = character(1), USE.NAMES = FALSE)
+      wrap_braces_once(title_case)
+    },
+    FUN.VALUE = character(1),
+    USE.NAMES = FALSE
+  )
 }
 
 
@@ -229,10 +258,10 @@ safe_title_case <- function(titles, component = NULL) {
 #'
 #' @details
 #' The function attempts to read and parse a BibTeX file into a data frame.
-#' On success, the parsed entries are returned. If parsing results in ignored or
-#' empty entries, or if any fatal error occurs, a formatted diagnostic is emitted
-#' and the function aborts. Warnings and messages from RefManageR are displayed
-#' with {cli} formatting but do not stop execution.
+#' On success, the parsed entries are returned. If parsing results in ignored
+#' or empty entries, or if any fatal error occurs, a formatted diagnostic is
+#' emitted and the function aborts. Warnings and messages from RefManageR are
+#' displayed with [cli] formatting but do not stop execution.
 #'
 #' @param bib_file_path Path to a BibTeX (.bib) file to be read.
 #'
@@ -255,31 +284,41 @@ safe_read_bib <- function(bib_file_path) {
             return(bib_df)
           } else {
             stop(
-              "All of the bib entries are ignored while parsing the file due to some reason",
+              paste0(
+                "All of the bib entries are ignored while parsing the file ",
+                "due to some reason"
+              ),
               call. = FALSE
             )
           }
         },
         error = function(e) {
           err_msg <- clean_condition_message(e)
-          cli::cli_abort(drop_string_NA(c(
-            "x" = cli::col_red("Occurred when reading the BibTeX file: {.file {bib_file_path}}"),
-            "i" = glue::glue("{err_msg}")
-          )), call = NULL)
+          cli::cli_abort(
+            drop_string_na(c(
+              "x" = cli::col_red(
+                "Occurred when reading the BibTeX file: {.file {bib_file_path}}"
+              ),
+              "i" = glue::glue("{err_msg}")
+            )),
+            call = NULL
+          )
         }
       )
     },
     warning = function(w) {
       warn_msg <- clean_condition_message(w)
-      cli::cli_warn(drop_string_NA(c(
-        "!" = cli::col_yellow("Occured when reading the BibTeX file: {.file {bib_file_path}}"),
+      cli::cli_warn(drop_string_na(c(
+        "!" = cli::col_yellow(
+          "Occured when reading the BibTeX file: {.file {bib_file_path}}"
+        ),
         "i" = glue::glue("{warn_msg}")
       )))
       invokeRestart("muffleWarning")
     },
     message = function(m) {
-      msg <- clean_condition_message(m)
-      cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
+      msg <- clean_condition_message(m) # nolint
+      cli::cli_inform(drop_string_na(c("*" = cli::col_blue("{msg}"))))
       invokeRestart("muffleMessage")
     }
   )
@@ -292,10 +331,10 @@ safe_read_bib <- function(bib_file_path) {
 #' \code{tryCatch()} block to provide robust handling of warnings and messages
 #' using the \pkg{cli} package for formatted output.
 #'
-#' On success, the function writes the BibTeX file and returns \code{TRUE} (invisibly).
-#' Warnings and messages are displayed but do not affect the return value.
-#' If an error occurs, a formatted error is emitted via \code{cli_abort()} and
-#' execution is stopped.
+#' On success, the function writes the BibTeX file and returns \code{TRUE}
+#' (invisibly). Warnings and messages are displayed but do not affect the
+#' return value. If an error occurs, a formatted error is emitted via
+#' \code{cli_abort()} and execution is stopped.
 #'
 #' @param bib_df A data frame of BibTeX fields suitable for conversion via
 #'   \code{RefManageR::as.BibEntry()}.
@@ -321,28 +360,37 @@ safe_write_bib <- function(bib_df, output_bib_file) {
         },
         error = function(e) {
           err_msg <- clean_condition_message(e)
-          cli::cli_abort(drop_string_NA(c(
-            "x" = cli::col_red("Occurred when writing the BibTeX file: {.file {output_bib_file}}"),
-            "i" = glue::glue("{err_msg}")
-          )), call = NULL)
+          cross_err_msg <- paste0(
+            "Occurred when writing the BibTeX file: ",
+            "{.file {output_bib_file}}"
+          )
+          cli::cli_abort(
+            drop_string_na(c(
+              "x" = cli::col_red(cross_err_msg),
+              "i" = glue::glue("{err_msg}")
+            )),
+            call = NULL
+          )
         }
       )
     },
     warning = function(w) {
       warn_msg <- clean_condition_message(w)
-      cli::cli_warn(drop_string_NA(c(
-        "!" = cli::col_yellow("Occured while writing the BibTeX file: {.file {output_bib_file}}"),
+      cli::cli_warn(drop_string_na(c(
+        "!" = cli::col_yellow(
+          "Occured while writing the BibTeX file: {.file {output_bib_file}}"
+        ),
         "i" = glue::glue("{warn_msg}")
       )))
       invokeRestart("muffleWarning")
     },
     message = function(m) {
-      msg <- clean_condition_message(m)
-      cli::cli_inform(drop_string_NA(c("*" = cli::col_blue("{msg}"))))
+      msg <- clean_condition_message(m) # nolint
+      cli::cli_inform(drop_string_na(c("*" = cli::col_blue("{msg}"))))
       invokeRestart("muffleMessage")
     },
     success = function(sc) {
-      sc_msg <- conditionMessage(sc)
+      sc_msg <- conditionMessage(sc) # nolint
       cli::cli_inform(c(
         "v" = "Successfully wrote BibTeX file: {.file {sc_msg}}"
       ))
