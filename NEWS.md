@@ -1,3 +1,11 @@
+# skmisc 0.4.0
+
+* Added many checks and tests for `create_article_template` and `bib_title_case`
+* Modularized & refactored the `bib_title_case` for better testing and made the 
+  function robust in the process.
+* Enhanced the function error, warning or simple messages.
+* Linted the package code using `lintr` and formatted the code using `air`
+
 # skmisc 0.3.0
 
 * Renamed the funciton `bib_title_to_title_case` to `bib_title_case` and used
