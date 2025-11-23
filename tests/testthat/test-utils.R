@@ -6,11 +6,16 @@ test_that("is_char_scalar() returns TRUE for valid single characters", {
   expect_true(is_char_scalar(" ")) # space is a valid non-empty character
 })
 
-test_that("is_char_scalar() returns FALSE for empty or NA characters or NULL", {
-  expect_false(is_char_scalar(""))
-  expect_false(is_char_scalar(NA_character_))
-  expect_false(is_char_scalar(NULL))
-})
+# adding `desc`, `code` so that texts contained with 80 line-width bound
+# non-standard !?
+test_that(
+  desc = "is_char_scalar() returns FALSE for empty or NA characters or NULL",
+  code = {
+    expect_false(is_char_scalar(""))
+    expect_false(is_char_scalar(NA_character_))
+    expect_false(is_char_scalar(NULL))
+  }
+)
 
 test_that("is_char_scalar() returns FALSE for non-character inputs", {
   expect_false(is_char_scalar(1))
@@ -19,10 +24,13 @@ test_that("is_char_scalar() returns FALSE for non-character inputs", {
   expect_false(is_char_scalar(factor("a")))
 })
 
-test_that("is_char_scalar() returns FALSE for multi-length character vectors", {
-  expect_false(is_char_scalar(c("a", "b")))
-  expect_false(is_char_scalar(character(0)))
-})
+test_that(
+  desc = "is_char_scalar() returns FALSE for multi-length character vectors",
+  code = {
+    expect_false(is_char_scalar(c("a", "b")))
+    expect_false(is_char_scalar(character(0)))
+  }
+)
 
 
 # Tests for skmisc:::stri_squish ------------------------------------------
@@ -77,25 +85,31 @@ test_that("wrap_braces_once treats nested braces as already wrapped", {
 
 # Tests for skmisc:::clean_condition_message ------------------------------
 
-test_that("clean_condition_message works with errors, warnings and messages", {
-  err <- try(stop("  Error: something went wrong  "), silent = TRUE)
-  warn <- simpleWarning("Warning:  deprecated function ")
-  msg <- simpleMessage("  just a message here  ")
+test_that(
+  desc = "clean_condition_message works with errors, warnings and messages",
+  code = {
+    err <- try(stop("  Error: something went wrong  "), silent = TRUE)
+    warn <- simpleWarning("Warning:  deprecated function ")
+    msg <- simpleMessage("  just a message here  ")
 
-  expect_equal(clean_condition_message(err), "something went wrong")
-  expect_equal(clean_condition_message(warn), "deprecated function")
-  expect_equal(clean_condition_message(msg), "just a message here")
-})
+    expect_equal(clean_condition_message(err), "something went wrong")
+    expect_equal(clean_condition_message(warn), "deprecated function")
+    expect_equal(clean_condition_message(msg), "just a message here")
+  }
+)
 
-test_that("prefixes are removed correctly (with/without colon, mixed case)", {
-  e1 <- simpleError("Error: bad thing")
-  e2 <- simpleError("error: another bad thing")
-  e3 <- simpleError("ERROR bad thing too")
+test_that(
+  desc = "prefixes are removed correctly (with/without colon, mixed case)",
+  code = {
+    e1 <- simpleError("Error: bad thing")
+    e2 <- simpleError("error: another bad thing")
+    e3 <- simpleError("ERROR bad thing too")
 
-  expect_equal(clean_condition_message(e1), "bad thing")
-  expect_equal(clean_condition_message(e2), "another bad thing")
-  expect_equal(clean_condition_message(e3), "bad thing too")
-})
+    expect_equal(clean_condition_message(e1), "bad thing")
+    expect_equal(clean_condition_message(e2), "another bad thing")
+    expect_equal(clean_condition_message(e3), "bad thing too")
+  }
+)
 
 
 test_that("whitespace is properly squished and trimmed", {
@@ -115,36 +129,42 @@ test_that("empty messages return NA", {
 })
 
 
-test_that("works with tryCatch-captured errors (class 'try-error' + condition)", {
-  result <- try(stop("my custom error"), silent = TRUE)
-  expect_true(inherits(result, "try-error"))
+test_that(
+  desc = "works with tryCatch-captured errors (class 'try-error' + condition)",
+  code = {
+    result <- try(stop("my custom error"), silent = TRUE)
+    expect_true(inherits(result, "try-error"))
 
-  cond <- attr(result, "condition")
-  expect_equal(clean_condition_message(cond), "my custom error")
-})
+    cond <- attr(result, "condition")
+    expect_equal(clean_condition_message(cond), "my custom error")
+  }
+)
 
 
-# Tests for skmisc:::drop_string_NA ---------------------------------------
+# Tests for skmisc:::drop_string_na ---------------------------------------
 
-test_that("drop_string_NA removes NA, 'NA', and empty strings", {
+test_that("drop_string_na removes NA, 'NA', and empty strings", {
   x <- c("a", NA, "b", "", "NA", "c", " ", "d")
 
   expect_equal(
-    drop_string_NA(x),
+    drop_string_na(x),
     c("a", "b", "c", " ", "d")
   )
 })
 
-test_that("drop_string_NA works with clean input", {
-  expect_equal(drop_string_NA("hello"), "hello")
-  expect_equal(drop_string_NA(c("x", "y", "z")), c("x", "y", "z"))
+test_that("drop_string_na works with clean input", {
+  expect_equal(drop_string_na("hello"), "hello")
+  expect_equal(drop_string_na(c("x", "y", "z")), c("x", "y", "z"))
 })
 
-test_that("drop_string_NA returns empty vector when all are removed", {
-  expect_equal(drop_string_NA(c("", "NA", NA)), character(0))
-  expect_equal(drop_string_NA(character(0)), character(0))
+test_that("drop_string_na returns empty vector when all are removed", {
+  expect_equal(drop_string_na(c("", "NA", NA)), character(0))
+  expect_equal(drop_string_na(character(0)), character(0))
 })
 
-test_that("drop_string_NA preserves spaces and other whitespace", {
-  expect_equal(drop_string_NA(c("  hi  ", "\t", "   ")), c("  hi  ", "\t", "   "))
+test_that("drop_string_na preserves spaces and other whitespace", {
+  expect_equal(
+    drop_string_na(c("  hi  ", "\t", "   ")),
+    c("  hi  ", "\t", "   ")
+  )
 })
