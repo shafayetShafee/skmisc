@@ -25,15 +25,15 @@ stri_squish <- function(x) {
 
 #' Clean and normalize condition messages
 #'
-#' This internal helper function takes a condition object (error, warning, or message)
-#' and extracts a clean, human-readable message. Leading "Error:" or "Warning:"
-#' prefixes are removed and extra whitespace is squished.
+#' This internal helper function takes a condition object (error, warning, or
+#' message) and extracts a clean, human-readable message. Leading "Error:" or
+#' "Warning:" prefixes are removed and extra whitespace is squished.
 #'
 #' @param cond A condition object, typically provided by \code{tryCatch} or
 #'   \code{withCallingHandlers}.
 #'
-#' @return A character string with the cleaned message. Returns \code{NA_character_}
-#'   if the original message is empty.
+#' @return A character string with the cleaned message. Returns
+#'   \code{NA_character_} if the original message is empty.
 #'
 #' @keywords internal
 #' @noRd
@@ -61,9 +61,8 @@ clean_condition_message <- function(cond) {
     return(NA_character_)
   }
 
-  return(clean_msg)
+  clean_msg
 }
-
 
 
 #' Drop NA and empty string elements from a character vector
@@ -73,11 +72,12 @@ clean_condition_message <- function(cond) {
 #'
 #' @param x A character vector.
 #'
-#' @return A character vector with all \code{NA}, \code{"NA"}, and empty strings removed.
+#' @return A character vector with all \code{NA}, \code{"NA"}, and empty
+#'    strings removed.
 #'
 #' @keywords internal
 #' @noRd
-drop_string_NA <- function(x) {
+drop_string_na <- function(x) {
   x[!is.na(x) & x != "NA" & x != ""]
 }
 
@@ -91,16 +91,17 @@ drop_string_NA <- function(x) {
 #'
 #' @param title A character scalar representing a string to wrap.
 #'
-#' @return A character scalar wrapped in braces, or unchanged if already wrapped.
+#' @return A character scalar wrapped in braces, or unchanged if already
+#'  wrapped.
 #'
 #' @keywords internal
 #' @noRd
 wrap_braces_once <- function(title) {
   title <- trimws(title)
   if (grepl("^\\{.*\\}$", title)) {
-    return(title)
+    title
   } else {
-    return(paste0("{", title, "}"))
+    paste0("{", title, "}")
   }
 }
 
@@ -123,8 +124,8 @@ wrap_braces_once <- function(title) {
 #' handlers or formatting rules.
 #'
 #' @return
-#' Invisibly returns `NULL`. The primary purpose is the side effect of signaling
-#' a condition.
+#' Invisibly returns `NULL`. The primary purpose is the side effect of
+#'    signaling a condition.
 #'
 #' @keywords internal
 #' @noRd
