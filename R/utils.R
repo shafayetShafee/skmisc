@@ -3,8 +3,82 @@
 #' @param x any object
 #' @return TRUE if x is a single, non-NA character, FALSE otherwise
 #' @keywords internal
+#' @noRd
 is_char_scalar <- function(x) {
-  is.character(x) && length(x) == 1L && !is.na(x) && nzchar(x)
+  (!is.null(x)) && is.character(x) && length(x) == 1L && !is.na(x) && nzchar(x)
+}
+
+
+#' Trim unnecessary white-spaces from a string.
+#'
+#' @param x string
+#' @return trimmed string
+#'
+#' @keywords internal
+#' @noRd
+stri_squish <- function(x) {
+  stringi::stri_trim_both(
+    stringi::stri_replace_all_regex(x, "\\s+", " ")
+  )
+}
+
+
+#' Clean and normalize condition messages
+#'
+#' This internal helper function takes a condition object (error, warning, or
+#' message) and extracts a clean, human-readable message. Leading "Error:" or
+#' "Warning:" prefixes are removed and extra whitespace is squished.
+#'
+#' @param cond A condition object, typically provided by \code{tryCatch} or
+#'   \code{withCallingHandlers}.
+#'
+#' @return A character string with the cleaned message. Returns
+#'   \code{NA_character_} if the original message is empty.
+#'
+#' @keywords internal
+#' @noRd
+clean_condition_message <- function(cond) {
+  if (inherits(cond, "try-error")) {
+    cond <- attr(cond, "condition")
+  }
+
+  cond_msg <- conditionMessage(cond)
+
+  if (length(cond_msg) == 0L || !nzchar(stringi::stri_trim_both(cond_msg))) {
+    return(NA_character_)
+  }
+
+  tag_removed_text <- sub(
+    pattern = "^\\s*(Error|Warning):?\\s*",
+    replacement = "",
+    x = cond_msg,
+    ignore.case = TRUE
+  )
+
+  clean_msg <- stri_squish(tag_removed_text)
+
+  if (!nzchar(clean_msg)) {
+    return(NA_character_)
+  }
+
+  clean_msg
+}
+
+
+#' Drop NA and empty string elements from a character vector
+#'
+#' This internal helper removes all elements of a character vector that are
+#' \code{NA}, the string \code{"NA"}, or an empty string \code{""}.
+#'
+#' @param x A character vector.
+#'
+#' @return A character vector with all \code{NA}, \code{"NA"}, and empty
+#'    strings removed.
+#'
+#' @keywords internal
+#' @noRd
+drop_string_na <- function(x) {
+  x[!is.na(x) & x != "NA" & x != ""]
 }
 
 
@@ -17,61 +91,48 @@ is_char_scalar <- function(x) {
 #'
 #' @param title A character scalar representing a string to wrap.
 #'
-#' @return A character scalar wrapped in braces, or unchanged if already wrapped.
+#' @return A character scalar wrapped in braces, or unchanged if already
+#'  wrapped.
 #'
 #' @keywords internal
+#' @noRd
 wrap_braces_once <- function(title) {
   title <- trimws(title)
   if (grepl("^\\{.*\\}$", title)) {
-    return(title)
+    title
   } else {
-    return(paste0("{", title, "}"))
+    paste0("{", title, "}")
   }
 }
 
-
-#' Safely convert titles to title case, preserving protected braces
+#' Signal a custom "success" condition
 #'
-#' @param titles character vector of BibTeX titles
-#' @param component Either of 'title', 'booktitle' or 'journal'
-#' @return character vector of titles, wrapped in single braces, with protected content intact
+#' This helper function constructs and signals a custom condition of class
+#' `"success"`. It allows downstream `withCallingHandlers()` or other condition
+#' handlers to react to a successful event in the same structured way that
+#' warnings, messages, and errors are handled.
+#'
+#' The condition carries a single field, `message`, which stores the success
+#' message to be emitted or processed by a handler.
+#'
+#' @param msg A character string containing the success message.
+#'
+#' @details
+#' This function is intended for internal use in situations where you want to
+#' decouple success reporting from core logic—for example, inside a `tryCatch`
+#' block where emitting a message directly would interfere with message
+#' handlers or formatting rules.
+#'
+#' @return
+#' Invisibly returns `NULL`. The primary purpose is the side effect of
+#'    signaling a condition.
+#'
 #' @keywords internal
-safe_title_case <- function(titles, component) {
-  vapply(titles, function(title) {
-    if (!is_char_scalar(title)) {
-      cli::cli_inform(c(
-        "!" = "Invalid {component} string: {.val {title}} in the bib file",
-        "!" = "Expected a single, non-NA character string; using empty string instead"
-      ))
-      title <- ""
-    }
-
-    protected <- stringi::stri_extract_all_regex(title, "\\{[^{}]+\\}", omit_no_match = TRUE)[[1]]
-
-    placeholder_title <- title
-    if (length(protected) > 0) {
-      placeholders <- paste0("%%", seq_along(protected), "%%")
-
-      placeholder_title <- stringi::stri_replace_all_fixed(
-        placeholder_title,
-        protected,
-        placeholders,
-        vectorize_all = FALSE
-      )
-    }
-
-    title_case <- tools::toTitleCase(placeholder_title)
-
-    if (length(protected) > 0) {
-      title_case <- stringi::stri_replace_all_fixed(
-        title_case,
-        paste0("%%", seq_along(protected), "%%"),
-        protected,
-        vectorize_all = FALSE
-      )
-    }
-
-    wrap_braces_once(title_case)
-
-  }, FUN.VALUE = character(1), USE.NAMES = FALSE)
+#' @noRd
+signal_success <- function(msg) {
+  cond <- structure(
+    list(message = msg),
+    class = c("success", "condition")
+  )
+  signalCondition(cond)
 }

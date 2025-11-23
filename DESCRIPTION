@@ -1,6 +1,6 @@
 Package: skmisc
 Title: Miscellaneous Functions by Shafayet Khan
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: 
     person(
       given = "Shafayet Khan", 
@@ -19,6 +19,7 @@ BugReports: https://github.com/shafayetShafee/skmisc/issues
 Imports: 
     cli,
     fs,
+    glue,
     lifecycle,
     RefManageR,
     rmarkdown,
@@ -26,5 +27,6 @@ Imports:
     stringi,
     yaml
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 Config/testthat/edition: 3

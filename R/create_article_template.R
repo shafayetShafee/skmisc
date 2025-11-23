@@ -1,16 +1,18 @@
-#' Create a Structured Article Template for a Specified Journal
+#' Create a structured article template for a specified journal
 #'
-#' This function generates an article template for the specified journal using the
-#' \code{rmarkdown::draft} function from the \code{rticles} package. It checks whether
-#' the journal is supported, creates the necessary directories and files, and formats
-#' the \code{<journal_name>_article.Rmd} file by adding section chunks and an abstract.
+#' Generate an article template for a given journal using
+#' \code{rmarkdown::draft} from the \code{rticles} package. The function
+#' checks whether the journal is supported, creates needed directories and
+#' files, and formats the \code{<journal_name>_article.Rmd} file with
+#' section chunks and an abstract.
 #'
-#' @param journal_name A character string specifying the journal for which the article
-#' template will be created. It must be one of the supported journals listed by
-#' \code{rticles::journals()}.
+#' @param journal_name A character string naming the journal for which the
+#' article template will be created. It must be one of the journals listed
+#' by \code{rticles::journals()}.
 #'
-#' @return This function does not return a value. It creates a directory structure for
-#' the article template, including the necessary \code{Rmd} files for sections and the abstract.
+#' @return This function returns no value. It creates the directory
+#' structure for the article template, including the required \code{Rmd}
+#' files for sections and the abstract.
 #'
 #' @export
 #'
@@ -22,6 +24,7 @@ create_article_template <- function(journal_name) {
   supported_journals <- rticles::journals()
 
   if (!journal_name %in% supported_journals) {
+    # nolint start: object_usage_linter
     supported_journals_formatted <- cli::cli_vec(
       x = supported_journals,
       style = list(
@@ -30,11 +33,23 @@ create_article_template <- function(journal_name) {
         "vec-trunc" = length(supported_journals)
       )
     )
+
+    err_msg <- "The jounal name '{.strong {journal_name}}' is not supported."
+
+    inf_msg_journal_list <- paste0(
+      "Please use one of the following journal names: ",
+      "{.val {supported_journals_formatted}}"
+    )
+
+    rticles_url <- "https://pkgs.rstudio.com/rticles/reference/journals.html"
+    inf_msg_details <- "For details, see {.url {rticles_url}}"
+    # nolint end
+
     cli::cli_abort(
       c(
-        "x" = "The jounal name '{.strong {journal_name}}' is not supported. ",
-        "i" = "Please use one of the following journal names: {.val {supported_journals_formatted}}",
-        "i" = "For details, see {.url https://pkgs.rstudio.com/rticles/reference/journals.html}"
+        "x" = err_msg,
+        "i" = inf_msg_journal_list,
+        "i" = inf_msg_details
       ),
       wrap = TRUE
     )
@@ -71,42 +86,27 @@ create_article_template <- function(journal_name) {
   if (!is.null(yaml_content$abstract) && nzchar(yaml_content$abstract)) {
     writeLines(yaml_content$abstract, abstract_file)
   } else {
-    lorem_ipsum_text <- paste0(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-      "Aenean ut elit odio. Donec fermentum tellus neque, vitae ",
-      "fringilla orci pretium vitae. Fusce maximus finibus facilisis. ",
-      "Donec ut ullamcorper turpis. Donec ut porta ipsum. Nullam ",
-      "cursus mauris a sapien ornare pulvinar. Aenean malesuada ",
-      "molestie erat quis mattis. Praesent scelerisque posuere ",
-      "faucibus. Praesent nunc nulla, ullamcorper ut ullamcorper ",
-      "sed, molestie ut est. Donec consequat libero nisi, non ",
-      "semper velit vulputate et. Quisque eleifend tincidunt ligula, ",
-      "bibendum finibus massa cursus eget. Curabitur aliquet ",
-      "vehicula quam non pulvinar. Aliquam facilisis tortor nec purus ",
-      "finibus, sit amet elementum eros sodales. Ut porta porttitor ",
-      "vestibulum. Integer molestie, leo ut maximus aliquam, velit ",
-      "dui iaculis nibh, eget hendrerit purus risus sit amet dolor. Sed ",
-      "sed tincidunt ex. Curabitur imperdiet egestas tellus in iaculis. ",
-      "Maecenas ante neque, pretium vel nisl at, lobortis lacinia ",
-      "neque. In gravida elit vel volutpat imperdiet. Sed ut nulla arcu. ",
-      "Proin blandit interdum ex sit amet laoreet. Phasellus efficitur, ",
-      "sem hendrerit mattis dapibus, nunc tellus ornare nisi, nec ",
-      "eleifend enim nibh ac ipsum. Aenean tincidunt nisl sit amet ",
-      "facilisis faucibus. Donec odio erat, bibendum eu imperdiet sed, ",
-      "gravida luctus turpis."
-    )
+    lorem_ipsum_text <- stringi::stri_rand_lipsum(n_paragraphs = 1)
     writeLines(lorem_ipsum_text, abstract_file)
   }
 
-  yaml_content$abstract <- "`r paste(readLines(\"abstract.Rmd\"), collapse = \"\\n  \")`\n"
+  yaml_content$abstract <- paste0(
+    '`r paste(readLines("abstract.Rmd"), ',
+    'collapse = "\\n  ")`',
+    "\n"
+  )
+
   yaml_str <- paste0("---\n", yaml::as.yaml(yaml_content), "---")
 
-
   child_chunks <- c(
-    '```{r section01, child="sections/section01.Rmd"}\n```', "",
-    '```{r section02, child="sections/section02.Rmd"}\n```', "",
-    '```{r section03, child="sections/section03.Rmd"}\n```', "",
-    '```{r section04, child="sections/section04.Rmd"}\n```', "",
+    '```{r section01, child="sections/section01.Rmd"}\n```',
+    "",
+    '```{r section02, child="sections/section02.Rmd"}\n```',
+    "",
+    '```{r section03, child="sections/section03.Rmd"}\n```',
+    "",
+    '```{r section04, child="sections/section04.Rmd"}\n```',
+    "",
     '```{r section05, child="sections/section05.Rmd"}\n```'
   )
 
@@ -114,8 +114,7 @@ create_article_template <- function(journal_name) {
   writeLines(new_article_content, article_file)
 
   cli::cli_alert_success(c(
-      "Article structure for '{.strong {journal_name}}' created successfully ",
-      "in the directory {.path {fs::path_abs(draft_dir)}}"
-    )
-  )
+    "Article structure for '{.strong {journal_name}}' created successfully ",
+    "in the directory {.path {fs::path_abs(draft_dir)}}"
+  ))
 }

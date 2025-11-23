@@ -2,7 +2,8 @@
 % Please edit documentation in R/bib_title_case.R
 \name{bib_title_case}
 \alias{bib_title_case}
-\title{Convert the title, booktitle, journal name of each bibentry of a bib file to title case.}
+\title{Convert the title, booktitle, journal name of each bibentry of a bib file
+to title case.}
 \usage{
 bib_title_case(
   bib_file_path,
@@ -28,9 +29,11 @@ unchanged.
 
 Examples:
 \itemize{
-\item \code{components = "all"} (default): modify \code{"title"}, \code{"booktitle"}, \code{"journal"}
+\item \code{components = "all"} (default): modify title, booktitle, and
+journal name
 \item \code{components = "title"}: modify only article titles
-\item \code{components = c("title", "journal")}: modify both title and journal fields
+\item \code{components = c("title", "journal")}: modify both title and
+journal name
 }}
 
 \item{overwrite}{Logical. Should an existing output file be overwritten?
@@ -42,7 +45,8 @@ be replaced.}
 \code{output_bib_file} as a character string, invisibly.
 }
 \description{
-Convert the title, booktitle, journal name of each bibentry of a bib file to title case.
+Convert the title, booktitle, journal name of each bibentry of a bib file
+to title case.
 }
 \examples{
 # Example .bib file included with the package
