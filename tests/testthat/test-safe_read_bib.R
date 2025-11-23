@@ -20,15 +20,18 @@ test_that("safe_read_bib successfully reads a valid BibTeX file", {
   expect_true(all(c("title", "author", "year") %in% names(result)))
 })
 
-
-test_that("safe_read_bib returns NULL and aborts on completely unreadable file", {
-  path <- write_bib("this is not bibtex at all")
-  expect_error(
-    safe_read_bib(path),
-    regexp = "Occurred when reading the BibTeX file",
-    class = "rlang_error"
-  )
-})
+# fmt: skip
+test_that(
+  desc = "safe_read_bib returns NULL and aborts on completely unreadable file",
+  code = {
+    path <- write_bib("this is not bibtex at all")
+    expect_error(
+      safe_read_bib(path),
+      regexp = "Occurred when reading the BibTeX file",
+      class = "rlang_error"
+    )
+  }
+)
 
 
 test_that("missing required fields for @article triggers error", {
