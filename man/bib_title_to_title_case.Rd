@@ -2,7 +2,8 @@
 % Please edit documentation in R/bib_title_to_title_case.R
 \name{bib_title_to_title_case}
 \alias{bib_title_to_title_case}
-\title{Convert the title, booktitle, journal name of each bibentry of a bib file to title case.}
+\title{Convert the title, booktitle, journal name of each bibentry of a bib
+file to title case.}
 \usage{
 bib_title_to_title_case(...)
 }

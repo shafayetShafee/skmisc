@@ -2,29 +2,30 @@
 % Please edit documentation in R/create_article_template.R
 \name{create_article_template}
 \alias{create_article_template}
-\title{Create a structured article template for a specified journal}
+\title{Create a structured article template directory for a specified journal}
 \usage{
 create_article_template(journal_name)
 }
 \arguments{
-\item{journal_name}{A character string naming the journal for which the
-article template will be created. It must be one of the journals listed
-by \code{rticles::journals()}.}
+\item{journal_name}{Character string giving the name of the journal.
+Must be one of the journals returned by \code{\link[rticles:journals]{rticles::journals()}}.}
 }
 \value{
-This function returns no value. It creates the directory
-structure for the article template, including the required \code{Rmd}
-files for sections and the abstract.
+Invisibly returns the path to the created directory. The function is
+called primarily for its side effect of creating files on disk.
 }
 \description{
-Generate an article template for a given journal using
-\code{rmarkdown::draft} from the \code{rticles} package. The function
-checks whether the journal is supported, creates needed directories and
-files, and formats the \code{<journal_name>_article.Rmd} file with
+Generates a ready-to-use article template for a journal supported by the
+\strong{\code{rticles}} package. The function creates the draft with
+\code{\link[rmarkdown:draft]{rmarkdown::draft()}}, sets up a clean directory structure (a separate
+\verb{sections/} folder and an \code{abstract.Rmd} file), moves the abstract texts out
+of the YAML front-matter, inserts child-document chunks for five default
+sections, and formats the \verb{<journal_name>_article.Rmd} file with
 section chunks and an abstract.
 }
 \examples{
 \dontrun{
 create_article_template("arxiv")
+create_article_template("peerj")
 }
 }
