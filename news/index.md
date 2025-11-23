@@ -1,5 +1,15 @@
 # Changelog
 
+## skmisc 0.4.0
+
+- Added many checks and tests for `create_article_template` and
+  `bib_title_case`
+- Modularized & refactored the `bib_title_case` for better testing and
+  made the function robust in the process.
+- Enhanced the function error, warning or simple messages.
+- Linted the package code using `lintr` and formatted the code using
+  `air`
+
 ## skmisc 0.3.0
 
 - Renamed the funciton `bib_title_to_title_case` to `bib_title_case` and
@@ -21,11 +31,7 @@
   [cli](https://cli.r-lib.org) for robust error messages.
 - Refactored component processing to a loop: fast, safe, avoids code
   duplication.
-- Internal helpers
-  [`is_char_scalar()`](https://shafayetshafee.github.io/skmisc/reference/is_char_scalar.md)
-  and
-  [`wrap_braces_once()`](https://shafayetshafee.github.io/skmisc/reference/wrap_braces_once.md)
-  added.
+- Internal helpers `is_char_scalar()` and `wrap_braces_once()` added.
 
 ## skmisc 0.1.3
 

@@ -6,4 +6,4 @@
   : Convert the title, booktitle, journal name of each bibentry of a bib
   file to title case.
 - [`create_article_template()`](https://shafayetshafee.github.io/skmisc/reference/create_article_template.md)
-  : Create a Structured Article Template for a Specified Journal
+  : Create a structured article template for a specified journal

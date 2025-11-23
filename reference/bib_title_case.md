@@ -38,13 +38,13 @@ bib_title_case(
 
   Examples:
 
-  - `components = "all"` (default): modify `"title"`, `"booktitle"`,
-    `"journal"`
+  - `components = "all"` (default): modify title, booktitle, and journal
+    name
 
   - `components = "title"`: modify only article titles
 
   - `components = c("title", "journal")`: modify both title and journal
-    fields
+    name
 
 - overwrite:
 
@@ -75,6 +75,7 @@ bib_title_case(
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
+#> ✔ Successfully wrote BibTeX file: /tmp/RtmpWc7emL/file182f64b4d314.bib
 cat(readLines(tmp_output_file), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -105,6 +106,7 @@ bib_title_case(
   output_bib_file = tmp_title_only,
   components = "title"
 )
+#> ✔ Successfully wrote BibTeX file: /tmp/RtmpWc7emL/file182f30f16e6f.bib
 
 # Convert title and journal fields only
 tmp_title_journal <- tempfile(fileext = ".bib")
@@ -115,4 +117,5 @@ bib_title_case(
 )
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
+#> ✔ Successfully wrote BibTeX file: /tmp/RtmpWc7emL/file182f37565062.bib
 ```
