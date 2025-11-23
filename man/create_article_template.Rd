@@ -2,24 +2,26 @@
 % Please edit documentation in R/create_article_template.R
 \name{create_article_template}
 \alias{create_article_template}
-\title{Create a Structured Article Template for a Specified Journal}
+\title{Create a structured article template for a specified journal}
 \usage{
 create_article_template(journal_name)
 }
 \arguments{
-\item{journal_name}{A character string specifying the journal for which the article
-template will be created. It must be one of the supported journals listed by
-\code{rticles::journals()}.}
+\item{journal_name}{A character string naming the journal for which the
+article template will be created. It must be one of the journals listed
+by \code{rticles::journals()}.}
 }
 \value{
-This function does not return a value. It creates a directory structure for
-the article template, including the necessary \code{Rmd} files for sections and the abstract.
+This function returns no value. It creates the directory
+structure for the article template, including the required \code{Rmd}
+files for sections and the abstract.
 }
 \description{
-This function generates an article template for the specified journal using the
-\code{rmarkdown::draft} function from the \code{rticles} package. It checks whether
-the journal is supported, creates the necessary directories and files, and formats
-the \code{<journal_name>_article.Rmd} file by adding section chunks and an abstract.
+Generate an article template for a given journal using
+\code{rmarkdown::draft} from the \code{rticles} package. The function
+checks whether the journal is supported, creates needed directories and
+files, and formats the \code{<journal_name>_article.Rmd} file with
+section chunks and an abstract.
 }
 \examples{
 \dontrun{
