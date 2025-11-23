@@ -12,3 +12,6 @@
 
 ^devs$
 ^CITATION\.cff$
+^[.]?air[.]toml$
+^\.vscode$
+^\.lintr$
