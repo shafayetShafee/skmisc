@@ -101,12 +101,15 @@ create_article_template <- function(journal_name) {
   yaml_content$abstract <- "`r paste(readLines(\"abstract.Rmd\"), collapse = \"\\n  \")`\n"
   yaml_str <- paste0("---\n", yaml::as.yaml(yaml_content), "---")
 
-
   child_chunks <- c(
-    '```{r section01, child="sections/section01.Rmd"}\n```', "",
-    '```{r section02, child="sections/section02.Rmd"}\n```', "",
-    '```{r section03, child="sections/section03.Rmd"}\n```', "",
-    '```{r section04, child="sections/section04.Rmd"}\n```', "",
+    '```{r section01, child="sections/section01.Rmd"}\n```',
+    "",
+    '```{r section02, child="sections/section02.Rmd"}\n```',
+    "",
+    '```{r section03, child="sections/section03.Rmd"}\n```',
+    "",
+    '```{r section04, child="sections/section04.Rmd"}\n```',
+    "",
     '```{r section05, child="sections/section05.Rmd"}\n```'
   )
 
