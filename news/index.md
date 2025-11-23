@@ -1,5 +1,9 @@
 # Changelog
 
+## skmisc 0.5.0
+
+- Output the directory tree of the created article template
+
 ## skmisc 0.4.0
 
 - Added many checks and tests for `create_article_template` and

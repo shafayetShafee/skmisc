@@ -1,10 +1,13 @@
-# Create a structured article template for a specified journal
+# Create a structured article template directory for a specified journal
 
-Generate an article template for a given journal using
-[`rmarkdown::draft`](https://pkgs.rstudio.com/rmarkdown/reference/draft.html)
-from the `rticles` package. The function checks whether the journal is
-supported, creates needed directories and files, and formats the
-`<journal_name>_article.Rmd` file with section chunks and an abstract.
+Generates a ready-to-use article template for a journal supported by the
+**`rticles`** package. The function creates the draft with
+[`rmarkdown::draft()`](https://pkgs.rstudio.com/rmarkdown/reference/draft.html),
+sets up a clean directory structure (a separate `sections/` folder and
+an `abstract.Rmd` file), moves the abstract texts out of the YAML
+front-matter, inserts child-document chunks for five default sections,
+and formats the `<journal_name>_article.Rmd` file with section chunks
+and an abstract.
 
 ## Usage
 
@@ -16,20 +19,20 @@ create_article_template(journal_name)
 
 - journal_name:
 
-  A character string naming the journal for which the article template
-  will be created. It must be one of the journals listed by
+  Character string giving the name of the journal. Must be one of the
+  journals returned by
   [`rticles::journals()`](https://pkgs.rstudio.com/rticles/reference/journals.html).
 
 ## Value
 
-This function returns no value. It creates the directory structure for
-the article template, including the required `Rmd` files for sections
-and the abstract.
+Invisibly returns the path to the created directory. The function is
+called primarily for its side effect of creating files on disk.
 
 ## Examples
 
 ``` r
 if (FALSE) { # \dontrun{
 create_article_template("arxiv")
+create_article_template("peerj")
 } # }
 ```

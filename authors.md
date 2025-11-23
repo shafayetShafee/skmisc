@@ -11,15 +11,15 @@
 Source:
 [`inst/CITATION`](https://github.com/shafayetShafee/skmisc/blob/main/inst/CITATION)
 
-Shafee S (2025). *shafayetShafee/skmisc: skmisc-v0.2.0*.
+Shafee S (2025). “shafayetShafee/skmisc: skmisc-v0.5.0.”
 [doi:10.5281/zenodo.17648276](https://doi.org/10.5281/zenodo.17648276),
-version 0.1.3, <https://doi.org/10.5281/zenodo.17648276>.
+version 0.5.0, <https://doi.org/10.5281/zenodo.17648276>.
 
-    @Manual{skmisc,
-      title = {shafayetShafee/skmisc: skmisc-v0.2.0},
+    @Misc{skmisc,
+      title = {shafayetShafee/skmisc: skmisc-v0.5.0},
       author = {Shafayet Khan Shafee},
       year = {2025},
-      note = {version 0.1.3},
+      note = {version 0.5.0},
       doi = {10.5281/zenodo.17648276},
       url = {https://doi.org/10.5281/zenodo.17648276},
     }
