@@ -8,6 +8,7 @@ test_that("is_char_scalar() returns TRUE for valid single characters", {
 
 # adding `desc`, `code` so that texts contained with 80 line-width bound
 # non-standard !?
+# fmt: skip
 test_that(
   desc = "is_char_scalar() returns FALSE for empty or NA characters or NULL",
   code = {
@@ -24,6 +25,7 @@ test_that("is_char_scalar() returns FALSE for non-character inputs", {
   expect_false(is_char_scalar(factor("a")))
 })
 
+# fmt: skip
 test_that(
   desc = "is_char_scalar() returns FALSE for multi-length character vectors",
   code = {
@@ -85,6 +87,7 @@ test_that("wrap_braces_once treats nested braces as already wrapped", {
 
 # Tests for skmisc:::clean_condition_message ------------------------------
 
+# fmt: skip
 test_that(
   desc = "clean_condition_message works with errors, warnings and messages",
   code = {
@@ -98,6 +101,7 @@ test_that(
   }
 )
 
+# fmt: skip
 test_that(
   desc = "prefixes are removed correctly (with/without colon, mixed case)",
   code = {
@@ -128,7 +132,7 @@ test_that("empty messages return NA", {
   expect_true(is.na(clean_condition_message(null_err)))
 })
 
-
+# fmt: skip
 test_that(
   desc = "works with tryCatch-captured errors (class 'try-error' + condition)",
   code = {
