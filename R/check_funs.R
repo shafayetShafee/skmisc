@@ -1,30 +1,58 @@
-#' @title Check whether an object is a valid character scalar
+#' @title Check whether an object is a valid boolean scalar
 #'
 #' @description
-#' This function checks whether `x` is a single, non-missing, non-empty
-#' character string. A value is considered invalid if it fails
-#' [is_char_scalar()]. If the check fails, a formatted error is raised
-#' using [`cli::cli_abort()`].
+#' This function checks whether an object [is_bool_scalar()]. If the check
+#' fails, a formatted error is raised using [`cli::cli_abort()`].
 #'
 #' @param x An R object to check.
 #'
-#' @return Invisibly returns TRUE. Throws an error of class
-#'   [`rlang::rlang_error`] if `x` is not a valid character scalar.
+#' @return Invisibly returns `TRUE` on check pass. Throws a error of class
+#'   [`rlang::rlang_error`] on check fail.
 #'
 #' @examples
-#' check_char("hello")      # passes
-#' check_char("  hi  ")     # passes
+#' check_bool_scalar(TRUE)          # passes
+#' check_bool_scalar(FALSE)         # passes
 #' \dontrun{
-#' check_char("")           # error
-#' check_char("   ")        # error
-#' check_char(42)           # error
-#' check_char(c("a", "b"))  # error
-#' check_char(NA)           # error
-#' check_char(NULL)         # error
+#' check_bool_scalar(NA)            # throws error
+#' check_bool_scalar(c(TRUE,FALSE)) # throws error
+#' check_bool_scalar("TRUE")        # throws error
 #' }
 #'
 #' @export
-check_char <- function(x) {
+check_bool_scalar <- function(x) {
+  if (!is_bool_scalar(x)) {
+    err_msg <- "{.var x}} must be a scaler boolean (`TRUE` or `FALSE`)"
+    cli::cli_abort(c("x" = err_msg), call = NULL)
+  }
+  invisible(TRUE)
+}
+
+
+#' @title Check whether an object is a valid character scalar
+#'
+#' @description
+#' This function checks whether an object [is_char_scalar()]. If the check
+#' fails, a formatted error is raised using [`cli::cli_abort()`].
+#'
+#' @param x An R object to check.
+#'
+#' @return Invisibly returns `TRUE` on check pass. Throws a error of class
+#'   [`rlang::rlang_error`] on check fail.
+#'
+#' @examples
+#' check_char_scalar("hello")      # passes
+#' check_char_scalar("  hi  ")     # passes
+#' \dontrun{
+#' check_char_scalar("")           # error
+#' check_char_scalar("   ")        # error
+#' check_char_scalar(42)           # error
+#' check_char_scalar(c("a", "b"))  # error
+#' check_char_scalar(NA)           # error
+#' check_char_scalar(NULL)         # error
+#' }
+#'
+#' @export
+check_char_scalar <- function(x) {
   if (!is_char_scalar(x)) {
     err_msg <- "{.var x} must be a single, non-empty character string."
     cli::cli_abort(c("x" = err_msg), call = NULL)
@@ -33,54 +61,16 @@ check_char <- function(x) {
 }
 
 
-
-#' @title Check whether an object is a valid boolean scalar
-#'
-#' @description
-#' This function checks whether an object is a single, non-missing logical
-#' value (`TRUE` or `FALSE`). If `x` [is_invalid()] or not a `boolean`, it
-#' raises a formatted error using [`cli::cli_abort()`].
-#'
-#' @param x An R object to check.
-#'
-#' @return Invisibly returns TRUE. Throws a error of class
-#'   [`rlang::rlang_error`]  if `x` is not a scalar boolean or an
-#'   [is_invalid()] object.
-#'
-#' @examples
-#' check_logical(TRUE)          # passes
-#' check_logical(FALSE)         # passes
-#' \dontrun{
-#' check_logical(NA)            # throws error
-#' check_logical(c(TRUE,FALSE)) # throws error
-#' check_logical("TRUE")        # throws error
-#' }
-#'
-#' @export
-check_logical <- function(x) {
-  if (is_invalid(x) || !is_bool(x)) {
-    err_msg <- paste0(
-      "{.var x}} must be a scaler ",
-      "boolean (`TRUE` or `FALSE`)"
-    )
-    cli::cli_abort(c("x" = err_msg), call = NULL)
-  }
-  invisible(TRUE)
-}
-
-
-
 #' @title Check whether an object is a valid numeric scalar
 #'
 #' @description
-#' This function checks whether an object is a single numeric value (integer or
-#' double), or [is_invalid()]. Returns `TRUE` invisibly if valid, otherwise raises
-#' a formatted error using [`cli::cli_abort()`].
+#' This function checks whether an object [is_numeric_scalar()]. If the check
+#' fails, a formatted error is raised using [`cli::cli_abort()`].
 #'
 #' @param x An R object to check.
 #'
-#' @return Invisibly returns TRUE if `x` is a valid numeric scalar. Throws an
-#'   error of class [rlang::rlang_error] otherwise.
+#' @return Invisibly returns `TRUE` on check pass. Throws a error of class
+#'   [`rlang::rlang_error`] on check fail.
 #'
 #' @examples
 #' check_numeric_scalar(5)       # passes
@@ -94,16 +84,15 @@ check_logical <- function(x) {
 #'
 #' @export
 check_numeric_scalar <- function(x) {
-  if (is_invalid(x) || !is.numeric(x) || length(x) != 1L) {
+  if (!is_numeric_scalar(x)) {
     err_msg <- paste0(
       "{.var x} must be a single, ",
-      "non-missing numeric value."
+      "non-missing and finite numeric value."
     )
     cli::cli_abort(c("x" = err_msg), call = NULL)
   }
   invisible(TRUE)
 }
-
 
 
 #' @title Check a numeric value against a single bound
@@ -118,7 +107,7 @@ check_numeric_scalar <- function(x) {
 #' @param bound Numeric bound to compare against.
 #' @param include Logical; if `TRUE`, the bound is inclusive (>= or <=),
 #'   otherwise exclusive (> or <). Default is TRUE.
-#' @param lower Logical; if TRUE, `bound` is treated as a lower bound,
+#' @param is_lower Logical; if TRUE, `bound` is treated as a lower bound,
 #'   otherwise as an upper bound. Default is TRUE.
 #'
 #' @return Invisibly returns `TRUE`. Throws an error of class
@@ -126,24 +115,29 @@ check_numeric_scalar <- function(x) {
 #'
 #' @examples
 #' check_bound(0.5, 0)                # passes, lower bound inclusive
-#' check_bound(0.5, 1, lower = FALSE) # passes, upper bound not relevant
+#' check_bound(0.5, 1, is_lower = FALSE) # passes, upper bound not relevant
 #' \dontrun{
 #' check_bound(-0.1, 0)              # throws error
 #' check_bound(1.1, 1)               # throws error
 #' }
 #'
 #' @export
-check_bound <- function(val, bound, include = TRUE, lower = TRUE) {
+check_bound <- function(val, bound, include = TRUE, is_lower = TRUE) {
+  check_numeric_scalar(val)
+  check_numeric_scalar(bound)
+  check_bool_scalar(include)
+  check_bool_scalar(is_lower)
+
   sym <- if (include) {
-    if (lower) cli::symbol$geq else cli::symbol$leq
+    if (is_lower) cli::symbol$geq else cli::symbol$leq
   } else {
-    if (lower) ">" else "<"
+    if (is_lower) ">" else "<"
   }
 
   ok <- if (include) {
-    if (lower) val >= bound else val <= bound
+    if (is_lower) val >= bound else val <= bound
   } else {
-    if (lower) val > bound else val < bound
+    if (is_lower) val > bound else val < bound
   }
 
   if (!ok) {
@@ -190,26 +184,20 @@ check_bound <- function(val, bound, include = TRUE, lower = TRUE) {
 #'
 #' @export
 check_numeric_bound <- function(
-    x,
-    lower = 0,
-    upper = 1,
-    lower_include = TRUE,
-    upper_include = TRUE
+  x,
+  lower = 0,
+  upper = 1,
+  lower_include = TRUE,
+  upper_include = TRUE
 ) {
-  if (is_invalid(x) || !is.numeric(x) || length(x) != 1L) {
-    err_msg <- paste0(
-      "{.var x} must be a single, non-missing numeric value."
-    )
-    cli::cli_abort(c("x" = err_msg), call = NULL)
-  }
-
+  check_numeric_scalar(x)
   check_numeric_scalar(lower)
   check_numeric_scalar(upper)
-  check_logical(lower_include)
-  check_logical(upper_include)
+  check_bool_scalar(lower_include)
+  check_bool_scalar(upper_include)
 
-  check_bound(x, lower, lower_include, lower = TRUE)
-  check_bound(x, upper, upper_include, lower = FALSE)
+  check_bound(x, lower, lower_include, is_lower = TRUE)
+  check_bound(x, upper, upper_include, is_lower = FALSE)
 
   invisible(TRUE)
 }

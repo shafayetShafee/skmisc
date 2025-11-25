@@ -2,9 +2,9 @@
 
 export(bib_title_case)
 export(bib_title_to_title_case)
+export(check_bool_scalar)
 export(check_bound)
-export(check_char)
-export(check_logical)
+export(check_char_scalar)
 export(check_numeric_bound)
 export(check_numeric_scalar)
 export(create_article_template)

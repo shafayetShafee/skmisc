@@ -4,7 +4,7 @@
 \alias{check_bound}
 \title{Check a numeric value against a single bound}
 \usage{
-check_bound(val, bound, include = TRUE, lower = TRUE)
+check_bound(val, bound, include = TRUE, is_lower = TRUE)
 }
 \arguments{
 \item{val}{Numeric variable to check.}
@@ -14,7 +14,7 @@ check_bound(val, bound, include = TRUE, lower = TRUE)
 \item{include}{Logical; if \code{TRUE}, the bound is inclusive (>= or <=),
 otherwise exclusive (> or <). Default is TRUE.}
 
-\item{lower}{Logical; if TRUE, \code{bound} is treated as a lower bound,
+\item{is_lower}{Logical; if TRUE, \code{bound} is treated as a lower bound,
 otherwise as an upper bound. Default is TRUE.}
 }
 \value{
@@ -29,7 +29,7 @@ a styled error is raised using \code{\link[cli:cli_abort]{cli::cli_abort()}}.
 }
 \examples{
 check_bound(0.5, 0)                # passes, lower bound inclusive
-check_bound(0.5, 1, lower = FALSE) # passes, upper bound not relevant
+check_bound(0.5, 1, is_lower = FALSE) # passes, upper bound not relevant
 \dontrun{
 check_bound(-0.1, 0)              # throws error
 check_bound(1.1, 1)               # throws error

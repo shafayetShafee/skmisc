@@ -10,13 +10,12 @@ check_numeric_scalar(x)
 \item{x}{An R object to check.}
 }
 \value{
-Invisibly returns TRUE if \code{x} is a valid numeric scalar. Throws an
-error of class \link[rlang:rlang_error]{rlang::rlang_error} otherwise.
+Invisibly returns \code{TRUE} on check pass. Throws a error of class
+\code{\link[rlang:rlang_error]{rlang::rlang_error}} on check fail.
 }
 \description{
-This function checks whether an object is a single numeric value (integer or
-double), or \code{\link[=is_invalid]{is_invalid()}}. Returns \code{TRUE} invisibly if valid, otherwise raises
-a formatted error using \code{\link[cli:cli_abort]{cli::cli_abort()}}.
+This function checks whether an object \code{\link[=is_numeric_scalar]{is_numeric_scalar()}}. If the check
+fails, a formatted error is raised using \code{\link[cli:cli_abort]{cli::cli_abort()}}.
 }
 \examples{
 check_numeric_scalar(5)       # passes
