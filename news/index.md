@@ -1,5 +1,35 @@
 # Changelog
 
+## skmisc 0.6.0
+
+- Added several type validation functions (`is_*_scalar`) for robust
+  input checks, including:
+
+  - [`is_bool_scalar()`](https://shafayetshafee.github.io/skmisc/reference/is_bool_scalar.md)
+    – check if a value is exactly `TRUE` or `FALSE`
+  - [`is_char_scalar()`](https://shafayetshafee.github.io/skmisc/reference/is_char_scalar.md)
+    – check if a value is a single non-empty character
+  - [`is_numeric_scalar()`](https://shafayetshafee.github.io/skmisc/reference/is_numeric_scalar.md)
+    – check if a value is a single numeric scalar
+
+- Added corresponding checker functions that raise an error if
+  validation fails, e.g.:
+
+  - `check_bool_scalar(TRUE)` passes, `check_bool_scalar(NA)` throws a
+    `rlang_error`
+
+  - `check_char_scalar("hello")` passes, `check_char_scalar(" ")` throws
+    a `rlang_error`
+
+  - `check_numeric_scalar(0.5)` passes, `check_numeric_scalar(NA)`
+    throws a `rlang_error`
+
+- Made all `is_*` and `check_*` functions consistent in naming and
+  behavior.
+
+- Added comprehensive testthat tests for all validation and check
+  functions.
+
 ## skmisc 0.5.0
 
 - Output the directory tree of the created article template
@@ -35,7 +65,9 @@
   [cli](https://cli.r-lib.org) for robust error messages.
 - Refactored component processing to a loop: fast, safe, avoids code
   duplication.
-- Internal helpers `is_char_scalar()` and `wrap_braces_once()` added.
+- Internal helpers
+  [`is_char_scalar()`](https://shafayetshafee.github.io/skmisc/reference/is_char_scalar.md)
+  and `wrap_braces_once()` added.
 
 ## skmisc 0.1.3
 

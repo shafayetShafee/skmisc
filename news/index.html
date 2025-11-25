@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">skmisc</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +29,30 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/shafayetShafee/skmisc/blob/v0.5.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/shafayetShafee/skmisc/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0" id="skmisc-060">skmisc 0.6.0<a class="anchor" aria-label="anchor" href="#skmisc-060"></a></h2>
+<ul><li>
+<p>Added several type validation functions (<code>is_*_scalar</code>) for robust input checks, including:</p>
+<ul><li>
+<code><a href="../reference/is_bool_scalar.html">is_bool_scalar()</a></code> – check if a value is exactly <code>TRUE</code> or <code>FALSE</code>
+</li>
+<li>
+<code><a href="../reference/is_char_scalar.html">is_char_scalar()</a></code> – check if a value is a single non-empty character</li>
+<li>
+<code><a href="../reference/is_numeric_scalar.html">is_numeric_scalar()</a></code> – check if a value is a single numeric scalar</li>
+</ul></li>
+<li>
+<p>Added corresponding checker functions that raise an error if validation fails, e.g.:</p>
+<ul><li><p><code>check_bool_scalar(TRUE)</code> passes, <code>check_bool_scalar(NA)</code> throws a <code>rlang_error</code></p></li>
+<li><p><code>check_char_scalar("hello")</code> passes, <code>check_char_scalar(" ")</code> throws a <code>rlang_error</code></p></li>
+<li><p><code>check_numeric_scalar(0.5)</code> passes, <code>check_numeric_scalar(NA)</code> throws a <code>rlang_error</code></p></li>
+</ul></li>
+<li><p>Made all <code>is_*</code> and <code>check_*</code> functions consistent in naming and behavior.</p></li>
+<li><p>Added comprehensive testthat tests for all validation and check functions.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="skmisc-050">skmisc 0.5.0<a class="anchor" aria-label="anchor" href="#skmisc-050"></a></h2>
 <ul><li>Output the directory tree of the created article template</li>
@@ -59,7 +80,7 @@
 <li>Used safe_title_case() helper to protect text inside braces and safely apply title case.</li>
 <li>Input/output validation improved using <a href="https://fs.r-lib.org" class="external-link">fs</a> and <a href="https://cli.r-lib.org" class="external-link">cli</a> for robust error messages.</li>
 <li>Refactored component processing to a loop: fast, safe, avoids code duplication.</li>
-<li>Internal helpers <code>is_char_scalar()</code> and <code>wrap_braces_once()</code> added.</li>
+<li>Internal helpers <code><a href="../reference/is_char_scalar.html">is_char_scalar()</a></code> and <code>wrap_braces_once()</code> added.</li>
 </ul></div>
 </div>
     <div class="section level2">
