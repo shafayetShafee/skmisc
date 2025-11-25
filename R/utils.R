@@ -1,14 +1,3 @@
-#' Check if x is a single, non-NA character
-#'
-#' @param x any object
-#' @return TRUE if x is a single, non-NA character, FALSE otherwise
-#' @keywords internal
-#' @noRd
-is_char_scalar <- function(x) {
-  (!is.null(x)) && is.character(x) && length(x) == 1L && !is.na(x) && nzchar(x)
-}
-
-
 #' Trim unnecessary white-spaces from a string.
 #'
 #' @param x string

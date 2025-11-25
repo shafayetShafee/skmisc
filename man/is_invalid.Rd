@@ -10,24 +10,25 @@ is_invalid(x)
 \item{x}{An R object to check.}
 }
 \value{
-A logical scalar: TRUE if the object is invalid, FALSE otherwise.
+A logical scalar: \code{TRUE} if the object is invalid, \code{FALSE} otherwise.
 }
 \description{
-This function tests whether a R object is considered invalid. An object is
-invalid if it is either of the followings,
+This function tests whether an R object should be considered invalid. An
+object is invalid if it meets any of the following conditions:
 \itemize{
-\item \link[base:missing]{base::missing},
-\item \code{NULL},
-\item has zero length,
-\item an object with class \code{try-error},
-\item an object with class \code{simpleError},
-\item a list whose elements are all invalid (see details) or
-\item an atomic vector whose elements are all \code{NA}.
+\item it is \code{\link[base:missing]{base::missing()}},
+\item it is \code{NULL},
+\item it has zero length,
+\item it inherits from class \code{"try-error"},
+\item it inherits from class \code{"simpleError"},
+\item it is a list whose elements are \emph{all} invalid (checked recursively), or
+\item it is an atomic vector whose elements are \emph{all} \code{NA}.
 }
 }
 \details{
-Lists are checked recursively: a list is invalid only when all of its
-elements are invalid.
+Lists are validated recursively: a list is invalid only if \emph{every} element
+in that list is invalid. Atomic vectors are considered invalid only when
+\emph{all} values are \code{NA}.
 }
 \examples{
 is_invalid(NULL)                 # TRUE
@@ -39,9 +40,7 @@ is_invalid(list(NA, NULL))       # TRUE
 is_invalid(list(NA, 5))          # FALSE
 
 # try-error example
-err1 <- try(
-  stop("err"), silent = TRUE
-)
+err1 <- try(stop("err"), silent = TRUE)
 is_invalid(err1)                 # TRUE
 
 # simpleError example
