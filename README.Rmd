@@ -25,9 +25,9 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml)
 
 
-The goal of `{skmisc}` is to provide some function that makes certain workflows easier. Currently, 
-the only function that might be useful to anyone (who use Rmarkdown + LaTex) is
-`skmisc::create_article_template`.
+The goal of {skmisc} is to gather a set of utility functions I frequently rely on in 
+my own workflows. These helpers streamline common tasks and may also be useful in your 
+projects. See the [full function references](https://shafayetshafee.github.io/skmisc/reference/index.html).
 
 ## Installation
 

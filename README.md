@@ -12,9 +12,10 @@ status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org
 coverage](https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main)
 [![R-CMD-check](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml)
 
-The goal of `{skmisc}` is to provide some function that makes certain
-workflows easier. Currently, the only function that might be useful to
-anyone (who use Rmarkdown + LaTex) is `skmisc::create_article_template`.
+The goal of {skmisc} is to gather a set of utility functions I
+frequently rely on in my own workflows. These helpers streamline common
+tasks and may also be useful in your projects. See the [full function
+references](https://shafayetshafee.github.io/skmisc/reference/index.html).
 
 ## Installation
 
@@ -174,6 +175,8 @@ bib_title_case(
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
+#> ✔ Successfully wrote BibTeX file:
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f64160bb7e0.bib'
 cat(readLines(tmp_all), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -204,6 +207,8 @@ bib_title_case(
   output_bib_file = tmp_title_only,
   components = "title"
 )
+#> ✔ Successfully wrote BibTeX file:
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f6420d7369a.bib'
 cat(readLines(tmp_title_only), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -234,6 +239,8 @@ bib_title_case(
 )
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
+#> ✔ Successfully wrote BibTeX file:
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f641141c94e.bib'
 cat(readLines(tmp_title_journal), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
