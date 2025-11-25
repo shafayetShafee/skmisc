@@ -5,7 +5,7 @@
     Condition
       Error in `bib_title_case()`:
       x Invalid input for `bib_file_path`.
-      i It must be a non-NA character scalar.
+      i It must be a non-NA character string
 
 # Non readable Input file
 
