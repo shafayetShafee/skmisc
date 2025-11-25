@@ -69,7 +69,7 @@ bib_title_case <- function(
   if (!is_char_scalar(bib_file_path)) {
     cli::cli_abort(c(
       "x" = "Invalid input for `bib_file_path`.",
-      "i" = "It must be a non-NA character scalar."
+      "i" = "It must be a non-NA character string"
     ))
   }
 

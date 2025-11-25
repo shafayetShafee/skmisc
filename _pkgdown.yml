@@ -46,5 +46,24 @@ navbar:
       aria-label: X (formerly, Twitter)
 
 
+reference:
+- title: Rmarkdown + LaTeX helpers
+  contents:
+  - create_article_template
+  - bib_title_case
+
+- title: Type checkers & helpers
+  contents:
+  - is_invalid
+  - is_bool_scalar
+  - is_char_scalar
+  - is_numeric_scalar
+  - check_bool_scalar
+  - check_char_scalar
+  - check_numeric_scalar
+  - check_bound
+  - check_numeric_bound
+
+
 deploy:
   install_metadata: true

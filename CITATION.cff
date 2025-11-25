@@ -8,7 +8,7 @@ message: 'To cite package "skmisc" in publications use:'
 type: software
 license: MIT
 title: 'skmisc: Miscellaneous Functions by Shafayet Khan'
-version: 0.5.0
+version: 0.6.0
 doi: 10.5281/zenodo.17648276
 abstract: Contains some function that makes certain workflows easier.
 authors:
@@ -18,14 +18,14 @@ authors:
   orcid: https://orcid.org/0009-0002-8021-3788
 preferred-citation:
   type: generic
-  title: 'shafayetShafee/skmisc: skmisc-v0.5.0'
+  title: 'shafayetShafee/skmisc: skmisc-v0.6.0'
   authors:
   - family-names: Shafee
     given-names: Shafayet Khan
     email: sshafee@isrt.ac.bd
     orcid: https://orcid.org/0009-0002-8021-3788
   year: '2025'
-  notes: version 0.5.0
+  notes: version 0.6.0
   doi: 10.5281/zenodo.17648276
   url: https://doi.org/10.5281/zenodo.17648276
 repository-code: https://github.com/shafayetShafee/skmisc
