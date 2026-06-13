@@ -8,7 +8,7 @@ message: 'To cite package "skmisc" in publications use:'
 type: software
 license: MIT
 title: 'skmisc: Miscellaneous Functions by Shafayet Khan'
-version: 0.6.0
+version: 0.6.1
 doi: 10.5281/zenodo.17648276
 abstract: Contains some function that makes certain workflows easier.
 authors:
@@ -51,8 +51,8 @@ references:
   authors:
   - family-names: Csárdi
     given-names: Gábor
-    email: csardi.gabor@gmail.com
-  year: '2025'
+    email: gabor@posit.co
+  year: '2026'
   doi: 10.32614/CRAN.package.cli
 - type: software
   title: fs
@@ -69,7 +69,7 @@ references:
   - family-names: Csárdi
     given-names: Gábor
     email: csardi.gabor@gmail.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.fs
 - type: software
   title: glue
@@ -85,7 +85,7 @@ references:
     given-names: Jennifer
     email: jenny@posit.co
     orcid: https://orcid.org/0000-0002-6983-2759
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.glue
 - type: software
   title: lifecycle
@@ -101,7 +101,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.lifecycle
 - type: software
   title: RefManageR
@@ -115,7 +115,7 @@ references:
     given-names: Mathew W.
     email: mathew.w.mclean@gmail.com
     orcid: https://orcid.org/0000-0002-7891-9645
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.RefManageR
 - type: software
   title: rmarkdown
@@ -159,7 +159,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: rticles
@@ -295,7 +295,7 @@ references:
     given-names: Rob
     email: Rob.Hyndman@monash.edu
     orcid: https://orcid.org/0000-0002-2140-5352
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rticles
 - type: software
   title: stringi
@@ -313,7 +313,7 @@ references:
     given-names: others;
   - name: Inc.
   - name: others
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.stringi
 - type: software
   title: yaml
@@ -349,7 +349,7 @@ references:
     given-names: Zhian N.
   - family-names: Gao
     given-names: Charlie
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.yaml
 - type: software
   title: testthat
@@ -361,7 +361,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.0.0'
 - type: software
@@ -387,6 +387,6 @@ references:
     email: hadley@posit.co
   - family-names: Chang
     given-names: Winston
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.withr
 

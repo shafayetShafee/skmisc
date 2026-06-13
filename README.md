@@ -176,7 +176,7 @@ bib_title_case(
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ✔ Successfully wrote BibTeX file:
-#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f64160bb7e0.bib'
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpymjLQM/file46b348b15bbc.bib'
 cat(readLines(tmp_all), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -208,7 +208,7 @@ bib_title_case(
   components = "title"
 )
 #> ✔ Successfully wrote BibTeX file:
-#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f6420d7369a.bib'
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpymjLQM/file46b373fdb8ec.bib'
 cat(readLines(tmp_title_only), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -240,7 +240,7 @@ bib_title_case(
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ✔ Successfully wrote BibTeX file:
-#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f641141c94e.bib'
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpymjLQM/file46b31677c972.bib'
 cat(readLines(tmp_title_journal), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
