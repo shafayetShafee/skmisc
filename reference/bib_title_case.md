@@ -75,7 +75,7 @@ bib_title_case(
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
-#> ✔ Successfully wrote BibTeX file: /tmp/RtmpHIZEhQ/file1a6bea6d62d.bib
+#> ✔ Successfully wrote BibTeX file: /tmp/RtmpScOho9/file1a283e42a38e.bib
 cat(readLines(tmp_output_file), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -106,7 +106,7 @@ bib_title_case(
   output_bib_file = tmp_title_only,
   components = "title"
 )
-#> ✔ Successfully wrote BibTeX file: /tmp/RtmpHIZEhQ/file1a6b2e4f0945.bib
+#> ✔ Successfully wrote BibTeX file: /tmp/RtmpScOho9/file1a2832c26f3.bib
 
 # Convert title and journal fields only
 tmp_title_journal <- tempfile(fileext = ".bib")
@@ -117,5 +117,5 @@ bib_title_case(
 )
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
-#> ✔ Successfully wrote BibTeX file: /tmp/RtmpHIZEhQ/file1a6b449f77c0.bib
+#> ✔ Successfully wrote BibTeX file: /tmp/RtmpScOho9/file1a2849a6de1e.bib
 ```
