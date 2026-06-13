@@ -84,7 +84,7 @@ create_article_template <- function(journal_name) {
 
   yaml_content <- rmarkdown::yaml_front_matter(article_file)
 
-  if (!is.null(yaml_content$abstract) && nzchar(yaml_content$abstract)) {
+  if (!is.null(yaml_content$abstract) && any(nzchar(trimws(yaml_content$abstract)))) {
     writeLines(yaml_content$abstract, abstract_file)
   } else {
     lorem_ipsum_text <- stringi::stri_rand_lipsum(n_paragraphs = 1)
