@@ -1,5 +1,11 @@
 # Changelog
 
+## skmisc 0.6.1
+
+- fixed [\#14](https://github.com/shafayetShafee/skmisc/issues/14)
+  \[nzchar() error when YAML front-matter field abstract spans multiple
+  lines\]
+
 ## skmisc 0.6.0
 
 - Added several type validation functions (`is_*_scalar`) for robust

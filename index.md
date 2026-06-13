@@ -5,8 +5,6 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://choosealicense.com/licenses/mit/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17648276.svg)](https://doi.org/10.5281/zenodo.17648275)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/skmisc)](https://CRAN.R-project.org/package=skmisc)
 [![Codecov test
 coverage](https://codecov.io/gh/shafayetShafee/skmisc/branch/main/graph/badge.svg)](https://app.codecov.io/gh/shafayetShafee/skmisc?branch=main)
 [![R-CMD-check](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shafayetShafee/skmisc/actions/workflows/R-CMD-check.yaml)
@@ -24,6 +22,7 @@ You can install the development version of
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("shafayetShafee/skmisc")
 ```
@@ -31,6 +30,7 @@ pak::pak("shafayetShafee/skmisc")
 or,
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("shafayetShafee/skmisc")
 ```
@@ -45,6 +45,7 @@ Medicine (SIM)* style using the R package
 The standard approach is:
 
 ``` r
+
 rmarkdown::draft(
     "sim_article", 
     template = "sim", 
@@ -78,6 +79,7 @@ organization and modular editing.
 That motivated the creation of the following function:
 
 ``` r
+
 skmisc::create_article_template("sim")
 ```
 
@@ -107,6 +109,7 @@ sim_article
 In this layout, each major section lives in its own Rmd file, which the
 main file (`sim_article.Rmd`) includes as child documents. For example
 (non-essential YAML omitted):
+
 
     ---
     <..TRUNCATED..>
@@ -147,6 +150,7 @@ manuscript clean, organized, and modular. Useful, innit? 🙂
 ### Converting the title of bib entries in a bib file to title case
 
 ``` r
+
 library(skmisc)
 
 bib_file <- system.file("extdata", "ref.bib", package = "skmisc")
@@ -184,7 +188,7 @@ bib_title_case(
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ✔ Successfully wrote BibTeX file:
-#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f64160bb7e0.bib'
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//Rtmp8tKerA/file710b3776650b.bib'
 cat(readLines(tmp_all), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -216,7 +220,7 @@ bib_title_case(
   components = "title"
 )
 #> ✔ Successfully wrote BibTeX file:
-#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f6420d7369a.bib'
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//Rtmp8tKerA/file710b3de3d19f.bib'
 cat(readLines(tmp_title_only), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},
@@ -248,7 +252,7 @@ bib_title_case(
 #> ! Invalid journal string: NA in the bib file
 #> ! Expected a single, non-NA character string; using empty string instead
 #> ✔ Successfully wrote BibTeX file:
-#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//RtmpvNOFEM/file13f641141c94e.bib'
+#>   '/var/folders/1b/qtkmxx654wngfv_28qzz60l00000gn/T//Rtmp8tKerA/file710b37d73d77.bib'
 cat(readLines(tmp_title_journal), sep = "\n")
 #> @Article{merlo2005brief,
 #>   title = {{A Brief Conceptual Tutorial of Multilevel Analysis in Social Epidemiology: Linking the Statistical Concept of Clustering to the Idea of Contextual Phenomenon}},

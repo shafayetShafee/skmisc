@@ -9,10 +9,10 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/shafayetShafee/skmisc/blob/v0.6.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/shafayetShafee/skmisc/blob/main/inst/CITATION)
 
 Shafee S (2025). “shafayetShafee/skmisc: skmisc-v0.6.0.”
-[doi:10.5281/zenodo.17648276](https://doi.org/10.5281/zenodo.17648276),
+[doi:10.5281/zenodo.17648276](https://doi.org/10.5281/zenodo.17648276).
 version 0.6.0, <https://doi.org/10.5281/zenodo.17648276>.
 
     @Misc{skmisc,
