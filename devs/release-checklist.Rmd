@@ -1,0 +1,85 @@
+---
+title: "Release Checklist"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Patch Release Workflow for skmisc
+
+Run chunks interactively (eval = FALSE by default, since this is a checklist).
+
+## 1. Pre-flight checks
+
+```{r}
+devtools::document()
+devtools::test()
+devtools::check()
+```
+
+## 2. Bump version (patch)
+
+```{r}
+usethis::use_version("patch")
+```
+
+This updates `DESCRIPTION` (Version field) and adds a new heading to `NEWS.md`.
+
+## 3. Edit NEWS.md
+
+Manually fill in bullet points describing changes under the new version
+heading before continuing.
+
+## 4. Rebuild README
+
+```{r}
+devtools::build_readme()
+```
+
+## 5. Update citation files
+
+```{r}
+cffr::cff_write()
+usethis::use_citation()
+```
+
+## 6. Spell check & URL check
+
+```{r}
+devtools::spell_check()
+urlchecker::url_check()
+```
+
+## 7. Final full check
+
+```{r}
+devtools::check(remote = TRUE, manual = TRUE)
+```
+
+## 8. Commit changes
+
+```{bash}
+git add DESCRIPTION NEWS.md README.md CITATION.cff inst/CITATION man/ R/
+git commit -m "Patch vX.Y.Z: <summary>"
+```
+
+## 9. Tag and push
+
+```{bash}
+git tag vX.Y.Z
+git push origin main --tags
+```
+
+## 10. Rebuild pkgdown site
+
+```{r}
+pkgdown::build_site()
+```
+
+## 11. CRAN submission (if applicable)
+
+```{r}
+devtools::release()
+```
